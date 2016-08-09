@@ -2,20 +2,176 @@ Make(delphi)
 ver(4.04 build 184)
 Add(MainForm,2953706,210,105)
 {
- Width=580
+ Width=711
  Height=564
 }
-Add(Memo,5582710,497,224)
+Add(Edit,9861362,385,77)
+{
+ Left=470
+ Top=75
+ Text="1"
+}
+Add(Memo,8619692,63,49)
 {
  Left=5
  Top=5
- Width=355
+ Width=440
  Height=510
+ Visible=1
  Strings=#71:// the setup function runs once when you press reset or power the board|14:void setup() {|44:  // initialize digital pin 13 as an output.|22:  pinMode(13, OUTPUT);|1:}|0:|53:// the loop function runs over and over again forever|13:void loop() {|74:  digitalWrite(13, HIGH);   // turn the LED on (HIGH is the voltage level)|48:  delay(1000);              // wait for a second|73:  digitalWrite(13, LOW);    // turn the LED off by making the voltage LOW|48:  delay(1000);              // wait for a second|1:}|
 }
-Add(Edit,9861362,399,77)
+Add(DoData,1159669,385,203)
 {
- Left=370
- Top=75
- Text="1"
+ link(onEventData,10640481:doDelete,[])
+ link(Data,14293585:Var2,[])
+}
+Add(HilightMemo,10640481,588,189)
+{
+ Left=5
+ Top=5
+ Width=440
+ Height=510
+ Font=[Courier New,8,0,0,1]
+ Strings=#14:void setup() {|20:pinMode(13, OUTPUT);|1:}|13:void loop() {|23:digitalWrite(13, HIGH);|12:delay(1000);|22:digitalWrite(13, LOW);|12:delay(1000);|1:}|
+ HilightFont=[Courier New,8,0,0,1]
+ Point(doInsert)
+ Point(doRedo)
+ Point(doUndo)
+ link(Str,1098780:Text,[(594,149)(328,149)])
+}
+Add(Button,12693533,210,203)
+{
+ Left=470
+ Top=140
+ Caption="DEL"
+ link(onClick,1159669:doData,[])
+}
+Add(Edit,1098780,322,77)
+{
+ Left=470
+ Top=105
+ Width=215
+}
+Add(Button,2600632,210,245)
+{
+ Left=470
+ Top=175
+ Caption="INS"
+ link(onClick,14710012:doData,[])
+}
+Add(DoData,14710012,350,245)
+{
+ link(onEventData,10640481:doInsert,[(457,251)(457,237)])
+ link(Data,14293585:Var1,[(356,173)])
+}
+Add(GetDataEx,14293585,385,168)
+{
+ link(Data,9861362:Text,[])
+}
+Add(Memo,15019614,658,189)
+{
+ Left=475
+ Top=245
+ Width=200
+ Height=245
+}
+Add(Button,10405200,210,329)
+{
+ Left=590
+ Top=210
+ Caption="REDO"
+ link(onClick,10640481:doRedo,[(537,335)(537,244)])
+}
+Add(Button,14499861,210,371)
+{
+ Left=530
+ Top=210
+ Caption="UNDO"
+ link(onClick,10640481:doUndo,[(553,377)(553,251)])
+}
+Add(Button,11756674,210,287)
+{
+ Caption="INS"
+ link(onClick,14361479:doRead,[])
+}
+Add(ArrayRW,14361479,392,287)
+{
+ link(onRead,3414738:doWork1,[])
+ link(Array,813644:Var1,[(398,269)])
+ link(Index,13655478:Var2,[])
+}
+Add(ChildForm,3414738,441,287)
+{
+ link(onEvent1,6676063:doWrite,[])
+}
+BEGIN_SDK
+  Add(EditMulti,3447575,196,84)
+  {
+   EventCount=1
+   WorkCount=1
+   VarCount=1
+   Width=636
+   Height=410
+   link(doWork1,5978589:doEvent1,[(262,90)(262,223)])
+   link(Var1,4286920:Text,[(202,368)(335,368)])
+  }
+  Add(MainForm,10317608,511,119)
+  {
+   Left=35
+   Top=105
+   Width=614
+   Height=426
+   Visible=1
+   Point(doVisible)
+  }
+  Add(Edit,4286920,329,210)
+  {
+   Left=5
+   Top=10
+   Width=585
+  }
+  Add(Button,5524427,420,98)
+  {
+   Left=200
+   Top=325
+   Caption="OK"
+   link(onClick,9674735:doEvent1,[])
+  }
+  Add(Hub,5978589,273,217)
+  {
+   link(onEvent1,4286920:doText2,[])
+   link(onEvent2,10317608:doVisible,[(305,230)(305,153)])
+  }
+  Add(Button,16417869,420,140)
+  {
+   Left=265
+   Top=325
+   Caption="CANCEL"
+   link(onClick,13561963:doWork2,[])
+  }
+  Add(Hub,9674735,469,98)
+  {
+   link(onEvent1,3447575:onEvent1,[(661,104)(661,90)])
+   link(onEvent2,13561963:doWork1,[(494,111)])
+  }
+  Add(HubEx,13561963,490,140)
+  {
+   link(onEvent,10317608:doClose,[])
+  }
+END_SDK
+Add(ArrayRW,6676063,490,280)
+{
+ link(Array,813644:Var2,[])
+ link(Index,13655478:Var3,[(503,173)])
+ link(Value,3414738:Var1,[(510,258)(480,258)(480,331)(447,331)])
+}
+Add(GetDataEx,13655478,399,168)
+{
+ Angle=3
+ link(Data,14293585:Var3,[])
+}
+Add(GetDataEx,813644,490,264)
+{
+ Angle=1
+ link(Data,10640481:Array,[(608,269)])
 }
