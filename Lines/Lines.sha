@@ -1,0 +1,21 @@
+Make(delphi)
+ver(4.04 build 184)
+Add(MainForm,2953706,210,105)
+{
+ Width=580
+ Height=564
+}
+Add(Memo,5582710,497,224)
+{
+ Left=5
+ Top=5
+ Width=355
+ Height=510
+ Strings=#71:// the setup function runs once when you press reset or power the board|14:void setup() {|44:  // initialize digital pin 13 as an output.|22:  pinMode(13, OUTPUT);|1:}|0:|53:// the loop function runs over and over again forever|13:void loop() {|74:  digitalWrite(13, HIGH);   // turn the LED on (HIGH is the voltage level)|48:  delay(1000);              // wait for a second|73:  digitalWrite(13, LOW);    // turn the LED off by making the voltage LOW|48:  delay(1000);              // wait for a second|1:}|
+}
+Add(Edit,9861362,399,77)
+{
+ Left=370
+ Top=75
+ Text="1"
+}
