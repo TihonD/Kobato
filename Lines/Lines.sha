@@ -37,7 +37,10 @@ Add(HilightMemo,10640481,588,189)
  Point(doInsert)
  Point(doRedo)
  Point(doUndo)
+ Point(PositionY)
+ Point(onMouseUp)
  link(Str,1098780:Text,[(594,149)(328,149)])
+ link(onMouseUp,5245103:doData,[(629,202)(629,274)(597,274)(597,293)])
 }
 Add(Button,12693533,210,203)
 {
@@ -68,30 +71,25 @@ Add(GetDataEx,14293585,385,168)
 {
  link(Data,9861362:Text,[])
 }
-Add(Memo,15019614,658,189)
-{
- Left=475
- Top=245
- Width=200
- Height=245
-}
 Add(Button,10405200,210,329)
 {
- Left=590
- Top=210
+ Left=540
+ Top=175
  Caption="REDO"
  link(onClick,10640481:doRedo,[(537,335)(537,244)])
 }
 Add(Button,14499861,210,371)
 {
- Left=530
- Top=210
+ Left=540
+ Top=140
  Caption="UNDO"
  link(onClick,10640481:doUndo,[(553,377)(553,251)])
 }
 Add(Button,11756674,210,287)
 {
- Caption="INS"
+ Left=470
+ Top=210
+ Caption="EDIT"
  link(onClick,14361479:doRead,[])
 }
 Add(ArrayRW,14361479,392,287)
@@ -113,7 +111,7 @@ BEGIN_SDK
    Width=636
    Height=410
    link(doWork1,5978589:doEvent1,[(262,90)(262,223)])
-   link(Var1,4286920:Text,[(202,368)(335,368)])
+   link(Var1,562389:Var2,[(202,368)(335,368)])
   }
   Add(MainForm,10317608,511,119)
   {
@@ -129,6 +127,7 @@ BEGIN_SDK
    Left=5
    Top=10
    Width=585
+   link(onChange,5921502:doWork1,[(380,216)])
   }
   Add(Button,5524427,420,98)
   {
@@ -139,8 +138,10 @@ BEGIN_SDK
   }
   Add(Hub,5978589,273,217)
   {
-   link(onEvent1,4286920:doText2,[])
+   OutCount=3
+   link(onEvent1,16452291:doWork2,[])
    link(onEvent2,10317608:doVisible,[(305,230)(305,153)])
+   link(onEvent3,5921502:doWork2,[(306,237)(306,279)])
   }
   Add(Button,16417869,420,140)
   {
@@ -158,6 +159,228 @@ BEGIN_SDK
   {
    link(onEvent,10317608:doClose,[])
   }
+  Add(StrMask,11607052,399,273)
+  {
+   Mask="delay(*);"
+   link(onTrue,4364070:doEvent1,[])
+   link(Str,562389:Var3,[(405,250)])
+  }
+  Add(HubEx,5921502,376,273)
+  {
+   link(onEvent,11607052:doCompare,[])
+  }
+  Add(GetDataEx,562389,329,245)
+  {
+   link(Data,4286920:Text,[])
+  }
+  Add(MultiStrData,4170678,462,329)
+  {
+   Char="("
+   Count=1
+   link(onPart1,15970683:doSplit,[])
+  }
+  Add(MultiStrData,15970683,511,329)
+  {
+   Char=")"
+   Count=1
+   link(Str,4170678:RemaindStr,[(517,317)(493,317)(493,373)(468,373)])
+   link(onPart1,9861362:doText,[])
+  }
+  Add(Edit,9861362,560,329)
+  {
+   Left=30
+   Top=280
+   Text="-"
+   link(onChange,15923484:doString,[])
+  }
+  Add(FormatStr,15923484,609,329)
+  {
+   Mask="delay(%1);"
+   link(onFString,441446:doWork2,[])
+   link(Str1,9861362:Text,[(615,317)(591,317)(591,373)(566,373)])
+  }
+  Add(HubEx,16452291,315,217)
+  {
+   link(onEvent,4286920:doText2,[])
+  }
+  Add(TabControl,1769560,518,189)
+  {
+   Left=5
+   Top=45
+   Width=585
+   Height=230
+   Tabs=#7:Функции|9:Операторы|10:Переменные|8:Задержки|5:Порты|5:Циклы|
+   Bitmaps=[]
+   Point(PageTab)
+   link(onChange,21399:doEvent,[])
+  }
+  Add(ChildPanel,15327570,609,280)
+  {
+   link(onEvent1,441446:doWork1,[(653,286)])
+  }
+  BEGIN_SDK
+    Add(EditMulti,7630686,21,21)
+    {
+     EventCount=1
+     WorkCount=2
+     Width=468
+     Height=396
+     link(doWork1,3408916:doValue,[(49,27)(49,209)])
+     link(doWork2,5032503:doWork2,[(109,34)(109,286)])
+    }
+    Add(Panel,14255539,224,273)
+    {
+     Left=10
+     Top=75
+     Width=572
+     Height=188
+     Point(doBringToFront)
+    }
+    Add(MultiStrData,4170678,224,203)
+    {
+     Char="("
+     Count=1
+     link(Str,7790082:Var3,[(230,191)])
+     link(onPart1,15970683:doSplit,[])
+    }
+    Add(MultiStrData,15970683,273,203)
+    {
+     Char=")"
+     Count=1
+     link(Str,4170678:RemaindStr,[(279,191)(255,191)(255,247)(230,247)])
+     link(onPart1,9861362:doText,[])
+    }
+    Add(Edit,9861362,322,203)
+    {
+     Left=75
+     Top=15
+     Text="0"
+     link(onChange,15606048:doEvent,[])
+    }
+    Add(FormatStr,15923484,427,203)
+    {
+     Mask="delay(%1);"
+     link(onFString,6386210:doWork2,[])
+     link(Str1,11695965:Var1,[(433,191)(353,191)])
+    }
+    Add(Label,16258864,140,84)
+    {
+     Left=10
+     Top=20
+     Width=55
+     Caption="Задержка"
+    }
+    Add(RadioButton,7245395,364,63)
+    {
+     Left=135
+     Top=15
+     Width=90
+     Caption="милисекунд"
+     link(onSelect,8367371:doWork1,[(417,69)])
+    }
+    Add(RadioButton,2103263,364,105)
+    {
+     Left=135
+     Top=45
+     Width=90
+     Caption="микросекунд"
+     link(onSelect,8720691:doWork1,[(408,111)])
+    }
+    Add(IndexToChanel,15606048,364,203)
+    {
+     Point(Index)
+     link(onEvent1,8367371:doWork2,[])
+     link(onEvent2,8720691:doWork2,[])
+     link(Index,2103263:Selected,[])
+    }
+    Add(FormatStr,15474426,427,259)
+    {
+     Mask="delay_mks(%1);"
+     link(onFString,6386210:doWork3,[(474,265)])
+     link(Str1,11695965:Var3,[(433,247)])
+    }
+    Add(HubEx,6386210,470,203)
+    {
+     Angle=3
+     link(onEvent,7630686:onEvent1,[(474,27)])
+    }
+    Add(GetDataEx,11695965,347,242)
+    {
+     Angle=3
+     link(Data,9861362:Text,[(328,247)])
+    }
+    Add(StrMask,13492266,119,203)
+    {
+     link(onFalse,4188862:doEvent1,[])
+     link(onTrue,9914975:doEvent1,[(163,216)(163,244)])
+     link(Str,7790082:Var2,[])
+    }
+    Add(Hub,4188862,175,203)
+    {
+     OutCount=3
+     link(onEvent1,16388056:doWork2,[])
+     link(onEvent2,7245395:doSelect,[(200,216)(200,69)])
+     link(onEvent3,8534539:doWork1,[(199,223)])
+    }
+    Add(HubEx,16388056,203,203)
+    {
+     link(onEvent,4170678:doSplit,[])
+    }
+    Add(Hub,9914975,175,238)
+    {
+     OutCount=3
+     link(onEvent1,16388056:doWork3,[(207,244)])
+     link(onEvent2,2103263:doSelect,[(216,251)(216,111)])
+     link(onEvent3,8534539:doWork2,[])
+    }
+    Add(Memory,3408916,63,203)
+    {
+     link(onData,13492266:doCompare,[])
+    }
+    Add(GetDataEx,7790082,119,186)
+    {
+     Angle=3
+     link(Data,3408916:Value,[(97,191)(97,247)(69,247)])
+    }
+    Add(HubEx,8534539,195,252)
+    {
+     Angle=1
+     link(onEvent,5032503:doWork1,[])
+    }
+    Add(HubEx,5032503,195,280)
+    {
+     link(onEvent,14255539:doBringToFront,[])
+    }
+    Add(HubEx,8367371,413,203)
+    {
+     link(onEvent,15923484:doString,[])
+    }
+    Add(HubEx,8720691,404,210)
+    {
+     Angle=1
+     link(onEvent,15474426:doString,[(408,265)])
+    }
+  END_SDK
+  Add(ChanelToIndex,8179357,469,189)
+  {
+   Count=8
+   link(onIndex,1769560:PageTab,[(509,195)(509,202)])
+  }
+  Add(HubEx,441446,649,329)
+  {
+   Angle=1
+   link(onEvent,16452291:doWork3,[(653,411)(319,411)])
+  }
+  Add(Hub,4364070,441,280)
+  {
+   link(onEvent1,15327570:doWork1,[])
+   link(onEvent2,8179357:doWork4,[(462,293)(462,216)])
+  }
+  Add(IndexToChanel,21399,567,189)
+  {
+   Count=8
+   link(onEvent4,15327570:doWork2,[(604,216)(604,293)])
+  }
 END_SDK
 Add(ArrayRW,6676063,490,280)
 {
@@ -174,4 +397,31 @@ Add(GetDataEx,813644,490,264)
 {
  Angle=1
  link(Data,10640481:Array,[(608,269)])
+}
+Add(DoData,5245103,609,287)
+{
+ link(onEventData,9861362:doText2,[(653,293)(653,47)(369,47)(369,90)])
+ link(Data,10640481:PositionY,[])
+}
+Add(Button,15650275,210,413)
+{
+ Left=610
+ Top=140
+ Caption="OPEN"
+ link(onClick,11805590:doExecute,[])
+}
+Add(Button,16718395,210,455)
+{
+ Left=610
+ Top=175
+ Caption="SAVE"
+ link(onClick,5217425:doExecute,[])
+}
+Add(ODialog,11805590,259,413)
+{
+ link(onExecute,10640481:doLoad,[(567,419)(567,223)])
+}
+Add(SDialog,5217425,259,455)
+{
+ link(onExecute,10640481:doSave,[(575,461)(575,230)])
 }
