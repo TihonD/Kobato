@@ -54,6 +54,7 @@ Add(Edit,1098780,322,77)
  Left=470
  Top=105
  Width=215
+ Text=""
 }
 Add(Button,2600632,210,245)
 {
@@ -162,8 +163,9 @@ BEGIN_SDK
   Add(StrMask,11607052,399,273)
   {
    Mask="delay(*);"
+   link(onFalse,7392882:doCompare,[(443,279)(443,300)(387,300)(387,321)])
    link(onTrue,4364070:doEvent1,[])
-   link(Str,562389:Var3,[(405,250)])
+   link(Str,1784558:Var3,[(405,250)])
   }
   Add(HubEx,5921502,376,273)
   {
@@ -173,37 +175,11 @@ BEGIN_SDK
   {
    link(Data,4286920:Text,[])
   }
-  Add(MultiStrData,4170678,462,329)
-  {
-   Char="("
-   Count=1
-   link(onPart1,15970683:doSplit,[])
-  }
-  Add(MultiStrData,15970683,511,329)
-  {
-   Char=")"
-   Count=1
-   link(Str,4170678:RemaindStr,[(517,317)(493,317)(493,373)(468,373)])
-   link(onPart1,9861362:doText,[])
-  }
-  Add(Edit,9861362,560,329)
-  {
-   Left=30
-   Top=280
-   Text="-"
-   link(onChange,15923484:doString,[])
-  }
-  Add(FormatStr,15923484,609,329)
-  {
-   Mask="delay(%1);"
-   link(onFString,441446:doWork2,[])
-   link(Str1,9861362:Text,[(615,317)(591,317)(591,373)(566,373)])
-  }
   Add(HubEx,16452291,315,217)
   {
    link(onEvent,4286920:doText2,[])
   }
-  Add(TabControl,1769560,518,189)
+  Add(TabControl,1769560,553,189)
   {
    Left=5
    Top=45
@@ -214,9 +190,9 @@ BEGIN_SDK
    Point(PageTab)
    link(onChange,21399:doEvent,[])
   }
-  Add(ChildPanel,15327570,609,280)
+  Add(ChildPanel,15327570,693,280)
   {
-   link(onEvent1,441446:doWork1,[(653,286)])
+   link(onEvent1,10296382:doWork1,[(753,286)])
   }
   BEGIN_SDK
     Add(EditMulti,7630686,21,21)
@@ -311,6 +287,7 @@ BEGIN_SDK
     }
     Add(StrMask,13492266,119,203)
     {
+     Mask="mks"
      link(onFalse,4188862:doEvent1,[])
      link(onTrue,9914975:doEvent1,[(163,216)(163,244)])
      link(Str,7790082:Var2,[])
@@ -361,25 +338,190 @@ BEGIN_SDK
      link(onEvent,15474426:doString,[(408,265)])
     }
   END_SDK
-  Add(ChanelToIndex,8179357,469,189)
+  Add(ChanelToIndex,8179357,504,189)
   {
    Count=8
-   link(onIndex,1769560:PageTab,[(509,195)(509,202)])
-  }
-  Add(HubEx,441446,649,329)
-  {
-   Angle=1
-   link(onEvent,16452291:doWork3,[(653,411)(319,411)])
+   link(onIndex,1769560:PageTab,[(544,195)(544,202)])
   }
   Add(Hub,4364070,441,280)
   {
    link(onEvent1,15327570:doWork1,[])
-   link(onEvent2,8179357:doWork4,[(462,293)(462,216)])
+   link(onEvent2,8179357:doWork4,[(479,293)(479,216)])
   }
-  Add(IndexToChanel,21399,567,189)
+  Add(IndexToChanel,21399,602,189)
   {
    Count=8
-   link(onEvent4,15327570:doWork2,[(604,216)(604,293)])
+   link(onEvent4,15327570:doWork2,[(664,216)(664,293)])
+   link(onEvent5,15273135:doWork2,[(664,223)(664,335)])
+  }
+  Add(StrMask,7392882,399,315)
+  {
+   Mask="digitalWrite(*);"
+   link(onTrue,5252007:doEvent1,[])
+   link(Str,1784558:Var2,[(405,307)(370,307)])
+  }
+  Add(GetDataEx,1784558,364,245)
+  {
+   Angle=3
+   link(Data,562389:Var3,[])
+  }
+  Add(ChildPanel,15273135,693,322)
+  {
+   link(onEvent1,10296382:doWork2,[])
+  }
+  BEGIN_SDK
+    Add(EditMulti,7630686,21,21)
+    {
+     EventCount=1
+     WorkCount=2
+     Width=468
+     Height=396
+     link(doWork1,3408916:doValue,[(49,27)(49,209)])
+     link(doWork2,5032503:doWork2,[(109,34)(109,286)])
+    }
+    Add(Panel,14255539,224,273)
+    {
+     Left=10
+     Top=75
+     Width=572
+     Height=188
+     Point(doBringToFront)
+    }
+    Add(MultiStrData,4170678,224,203)
+    {
+     Char="("
+     Count=1
+     link(Str,7790082:Var3,[(230,191)])
+     link(onPart1,15970683:doSplit,[])
+    }
+    Add(MultiStrData,15970683,273,203)
+    {
+     Char=","
+     Count=1
+     link(Str,4170678:RemaindStr,[(279,191)(255,191)(255,247)(230,247)])
+     link(onPart1,9861362:doText,[])
+    }
+    Add(Edit,9861362,322,203)
+    {
+     Left=235
+     Top=15
+     Text="0"
+     link(onChange,15606048:doEvent,[])
+    }
+    Add(FormatStr,15923484,427,203)
+    {
+     Mask="digitalWrite(%1, LOW);"
+     link(onFString,6386210:doWork2,[])
+     link(Str1,11695965:Var1,[(433,191)(353,191)])
+    }
+    Add(Label,16258864,140,84)
+    {
+     Left=145
+     Top=20
+     Width=90
+     Caption="с линии порта №"
+    }
+    Add(RadioButton,7245395,364,63)
+    {
+     Left=15
+     Top=15
+     Width=125
+     Caption="Снять напряжение"
+     link(onSelect,8367371:doWork1,[(417,69)])
+    }
+    Add(RadioButton,2103263,364,105)
+    {
+     Left=15
+     Top=45
+     Width=120
+     Caption="Подать напряжение"
+     link(onSelect,8720691:doWork1,[(408,111)])
+    }
+    Add(IndexToChanel,15606048,364,203)
+    {
+     Point(Index)
+     link(onEvent1,8367371:doWork2,[])
+     link(onEvent2,8720691:doWork2,[])
+     link(Index,2103263:Selected,[])
+    }
+    Add(FormatStr,15474426,427,259)
+    {
+     Mask="digitalWrite(%1, HIGH);"
+     link(onFString,6386210:doWork3,[(474,265)])
+     link(Str1,11695965:Var3,[(433,247)])
+    }
+    Add(HubEx,6386210,470,203)
+    {
+     Angle=3
+     link(onEvent,7630686:onEvent1,[(474,27)])
+    }
+    Add(GetDataEx,11695965,347,242)
+    {
+     Angle=3
+     link(Data,9861362:Text,[(328,247)])
+    }
+    Add(StrMask,13492266,119,203)
+    {
+     Mask="*LOW*"
+     link(onFalse,4188862:doEvent1,[])
+     link(onTrue,9914975:doEvent1,[(163,216)(163,244)])
+     link(Str,7790082:Var2,[])
+    }
+    Add(Hub,4188862,175,203)
+    {
+     OutCount=3
+     link(onEvent1,16388056:doWork2,[])
+     link(onEvent2,2103263:doSelect,[(199,216)(199,111)])
+     link(onEvent3,8534539:doWork1,[(199,223)])
+    }
+    Add(HubEx,16388056,203,203)
+    {
+     link(onEvent,4170678:doSplit,[])
+    }
+    Add(Hub,9914975,175,238)
+    {
+     OutCount=3
+     link(onEvent1,16388056:doWork3,[(207,244)])
+     link(onEvent2,7245395:doSelect,[(213,251)(213,69)])
+     link(onEvent3,8534539:doWork2,[])
+    }
+    Add(Memory,3408916,63,203)
+    {
+     link(onData,13492266:doCompare,[])
+    }
+    Add(GetDataEx,7790082,119,186)
+    {
+     Angle=3
+     link(Data,3408916:Value,[(97,191)(97,247)(69,247)])
+    }
+    Add(HubEx,8534539,195,252)
+    {
+     Angle=1
+     link(onEvent,5032503:doWork1,[])
+    }
+    Add(HubEx,5032503,195,280)
+    {
+     link(onEvent,14255539:doBringToFront,[])
+    }
+    Add(HubEx,8720691,404,210)
+    {
+     Angle=1
+     link(onEvent,15474426:doString,[(408,265)])
+    }
+    Add(HubEx,8367371,413,203)
+    {
+     link(onEvent,15923484:doString,[])
+    }
+  END_SDK
+  Add(Hub,5252007,441,322)
+  {
+   link(onEvent1,15273135:doWork1,[])
+   link(onEvent2,8179357:doWork5,[(479,335)(479,223)])
+  }
+  Add(HubEx,10296382,749,322)
+  {
+   Angle=1
+   link(onEvent,16452291:doWork3,[(753,411)(319,411)])
   }
 END_SDK
 Add(ArrayRW,6676063,490,280)
