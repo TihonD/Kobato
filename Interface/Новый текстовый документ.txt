@@ -1,0 +1,15 @@
+void blink(char pin, int on, int off) {
+digitalWrite(pin, HIGH);
+delay(on);
+digitalWrite(pin, LOW);
+delay(off);
+}
+void setup() {
+pinMode(13, OUTPUT);
+}
+void loop() {
+digitalWrite(13, HIGH);
+delay(1000);
+digitalWrite(13, LOW);
+delay(1000);
+}
