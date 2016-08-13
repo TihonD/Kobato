@@ -262,14 +262,14 @@ Add(Button,10405200,392,329)
  Left=970
  Top=195
  Caption="REDO"
- link(onClick,10640481:doRedo,[(719,335)(719,244)])
+ link(onClick,6175395:doEvent1,[])
 }
 Add(Button,14499861,392,371)
 {
  Left=970
  Top=170
  Caption="UNDO"
- link(onClick,10640481:doUndo,[(735,377)(735,251)])
+ link(onClick,5494740:doEvent1,[])
 }
 Add(Button,11756674,392,287)
 {
@@ -287,8 +287,8 @@ Add(ArrayRW,14361479,574,287)
 Add(ChildForm,3414738,623,287)
 {
  link(onEvent1,13062541:doEvent1,[(660,293)(660,307)])
- link(Data1,9935613:Var2,[(629,232)(636,232)])
  link(onEvent2,7471764:doEvent2,[(667,300)(667,258)(499,258)(499,216)])
+ link(Data1,9935613:Var2,[(629,232)(636,232)])
 }
 BEGIN_SDK
   Add(EditMulti,3447575,196,84)
@@ -300,8 +300,8 @@ BEGIN_SDK
    Width=1259
    Height=669
    link(doWork1,4626418:doInfo,[(248,90)(248,216)])
-   link(Var1,562389:Var2,[(202,368)(573,368)])
    link(doWork2,13624639:doInfo,[(210,97)(210,307)])
+   link(Var1,562389:Var2,[(202,368)(573,368)])
   }
   Add(MainForm,10317608,665,196)
   {
@@ -392,7 +392,7 @@ BEGIN_SDK
      Width=580
      Height=438
      link(doWork1,3408916:doValue,[(49,27)(49,209)])
-     link(doWork2,5032503:doWork2,[(109,34)(109,286)])
+     link(doWork2,2099120:doEvent1,[(109,34)(109,286)])
     }
     Add(Panel,14255539,224,273)
     {
@@ -416,18 +416,18 @@ BEGIN_SDK
      link(Str,4170678:RemaindStr,[(279,191)(255,191)(255,247)(230,247)])
      link(onPart1,9861362:doText,[])
     }
-    Add(Edit,9861362,322,203)
+    Add(Edit,9861362,315,203)
     {
      Left=75
      Top=15
      Text="0"
-     link(onChange,15606048:doEvent,[])
+     link(onChange,15626654:doWork2,[])
     }
-    Add(FormatStr,15923484,427,203)
+    Add(FormatStr,15923484,448,203)
     {
      Mask="delay(%1);"
      link(onFString,6386210:doWork2,[])
-     link(Str1,11695965:Var1,[(433,191)(353,191)])
+     link(Str1,11695965:Var1,[(454,191)(353,191)])
     }
     Add(Label,16258864,140,84)
     {
@@ -436,44 +436,44 @@ BEGIN_SDK
      Width=55
      Caption="Задержка"
     }
-    Add(RadioButton,7245395,364,63)
+    Add(RadioButton,7245395,385,63)
     {
      Left=135
      Top=15
      Width=90
      Caption="милисекунд"
-     link(onSelect,8367371:doWork1,[(417,69)])
+     link(onSelect,8367371:doWork1,[(438,69)])
     }
-    Add(RadioButton,2103263,364,105)
+    Add(RadioButton,2103263,385,105)
     {
      Left=135
      Top=45
      Width=90
      Caption="микросекунд"
-     link(onSelect,8720691:doWork1,[(408,111)])
+     link(onSelect,8720691:doWork1,[(429,111)])
     }
-    Add(IndexToChanel,15606048,364,203)
+    Add(IndexToChanel,15606048,385,203)
     {
      Point(Index)
      link(onEvent1,8367371:doWork2,[])
      link(onEvent2,8720691:doWork2,[])
      link(Index,2103263:Selected,[])
     }
-    Add(FormatStr,15474426,427,259)
+    Add(FormatStr,15474426,448,259)
     {
      Mask="delay_mks(%1);"
-     link(onFString,6386210:doWork3,[(474,265)])
-     link(Str1,11695965:Var3,[(433,247)])
+     link(onFString,6386210:doWork3,[(495,265)])
+     link(Str1,11695965:Var3,[(454,247)])
     }
-    Add(HubEx,6386210,470,203)
+    Add(HubEx,6386210,491,203)
     {
      Angle=3
-     link(onEvent,7630686:onEvent1,[(474,27)])
+     link(onEvent,7630686:onEvent1,[(495,27)])
     }
     Add(GetDataEx,11695965,347,242)
     {
      Angle=3
-     link(Data,9861362:Text,[(328,247)])
+     link(Data,9861362:Text,[(321,247)])
     }
     Add(StrMask,13492266,119,203)
     {
@@ -518,14 +518,23 @@ BEGIN_SDK
     {
      link(onEvent,14255539:doBringToFront,[])
     }
-    Add(HubEx,8367371,413,203)
+    Add(HubEx,8367371,434,203)
     {
      link(onEvent,15923484:doString,[])
     }
-    Add(HubEx,8720691,404,210)
+    Add(HubEx,8720691,425,210)
     {
      Angle=1
-     link(onEvent,15474426:doString,[(408,265)])
+     link(onEvent,15474426:doString,[(429,265)])
+    }
+    Add(Hub,2099120,161,280)
+    {
+     link(onEvent1,5032503:doWork2,[])
+     link(onEvent2,15626654:doWork3,[(361,293)])
+    }
+    Add(HubEx,15626654,357,203)
+    {
+     link(onEvent,15606048:doEvent,[])
     }
   END_SDK
   Add(ChanelToIndex,8179357,742,266)
@@ -569,7 +578,7 @@ BEGIN_SDK
      Width=1287
      Height=718
      link(doWork1,3408916:doValue,[(49,27)(49,370)])
-     link(doWork2,5032503:doWork2,[(109,34)(109,706)])
+     link(doWork2,6977654:doEvent1,[(109,34)(109,706)])
     }
     Add(Panel,14255539,490,693)
     {
@@ -598,7 +607,7 @@ BEGIN_SDK
      Left=235
      Top=15
      Text="0"
-     link(onChange,15606048:doEvent,[])
+     link(onChange,2700468:doWork2,[])
     }
     Add(FormatStr,15923484,847,385)
     {
@@ -635,9 +644,9 @@ BEGIN_SDK
      Point(Index)
      link(onEvent1,8367371:doWork2,[])
      link(onEvent2,8720691:doWork2,[])
-     link(Index,815361:Value,[(685,366)(853,366)])
      link(onEvent3,9296868:doWork1,[(770,405)])
      link(onEvent4,12204528:doWork1,[(761,412)])
+     link(Index,815361:Value,[(685,366)(853,366)])
     }
     Add(FormatStr,15474426,847,441)
     {
@@ -868,6 +877,15 @@ BEGIN_SDK
      Angle=3
      link(onEvent,9529034:doWork3,[])
     }
+    Add(Hub,6977654,413,700)
+    {
+     link(onEvent1,5032503:doWork2,[])
+     link(onEvent2,2700468:doWork3,[(641,713)])
+    }
+    Add(HubEx,2700468,637,385)
+    {
+     link(onEvent,15606048:doEvent,[])
+    }
   END_SDK
   Add(Hub,5252007,679,399)
   {
@@ -964,7 +982,7 @@ BEGIN_SDK
      Width=1287
      Height=718
      link(doWork1,3408916:doValue,[(49,27)(49,370)])
-     link(doWork2,5032503:doWork2,[(109,34)(109,706)])
+     link(doWork2,652285:doEvent1,[(109,34)(109,706)])
     }
     Add(Panel,14255539,490,693)
     {
@@ -1264,8 +1282,9 @@ BEGIN_SDK
      Count=4
      link(onIndex,14387480:doEvent1,[])
     }
-    Add(Hub,14387480,679,385)
+    Add(Hub,14387480,686,385)
     {
+     InCount=2
      link(onEvent1,15606048:doEvent,[])
      link(onEvent2,8665817:doValue,[(705,398)(705,356)(548,356)(548,314)])
     }
@@ -1293,6 +1312,11 @@ BEGIN_SDK
     Add(HubEx,14673997,637,518)
     {
      link(onEvent,6868595:doSelect,[])
+    }
+    Add(Hub,652285,413,700)
+    {
+     link(onEvent1,5032503:doWork2,[])
+     link(onEvent2,14387480:doEvent2,[(673,713)(673,398)])
     }
   END_SDK
   Add(HubEx,3354810,987,450)
@@ -1357,11 +1381,11 @@ Add(Button,16718395,392,455)
 }
 Add(ODialog,11805590,441,413)
 {
- link(onExecute,10640481:doLoad,[(749,419)(749,223)])
+ link(onExecute,2317009:doEvent1,[])
 }
 Add(SDialog,5217425,441,455)
 {
- link(onExecute,10640481:doSave,[(757,461)(757,230)])
+ link(onExecute,2769126:doEvent1,[])
 }
 Add(MainForm,6186829,896,483)
 {
@@ -3263,7 +3287,7 @@ Add(StrMask,6545228,1547,714)
 }
 Add(Hub,1831649,854,336)
 {
- InCount=4
+ InCount=7
  link(onEvent1,3574833:doWork2,[])
  link(onEvent2,3536864:doEvent2,[(906,349)(906,580)])
 }
@@ -3316,8 +3340,8 @@ Add(IndexToChanel,13159227,1624,560)
  link(onEvent1,11816271:doWork3,[(1668,566)(1668,410)(459,410)])
  link(onEvent2,7340017:doEvent2,[(1679,573)(1679,545)(1584,545)(1584,517)])
  link(onEvent4,1097228:doMessage,[(1668,587)(1668,605)(1591,605)(1591,622)])
- link(Index,13362004:Var1,[(1630,548)(1588,548)])
  link(onEvent8,6277553:doWork3,[(1668,615)(1668,413)(487,413)])
+ link(Index,13362004:Var1,[(1630,548)(1588,548)])
 }
 Add(Hub,16474015,1498,483)
 {
@@ -3753,4 +3777,24 @@ Add(HubEx,11472707,483,105)
 {
  Angle=3
  link(onEvent,5949380:doWork3,[])
+}
+Add(Hub,6175395,511,329)
+{
+ link(onEvent1,10640481:doRedo,[(719,335)(719,244)])
+ link(onEvent2,1831649:doEvent3,[(689,342)(689,356)])
+}
+Add(Hub,5494740,511,371)
+{
+ link(onEvent1,10640481:doUndo,[(647,377)(647,251)])
+ link(onEvent2,1831649:doEvent5,[(689,384)(689,370)])
+}
+Add(Hub,2317009,511,413)
+{
+ link(onEvent1,10640481:doLoad,[(647,419)(647,223)])
+ link(onEvent2,1831649:doEvent6,[(689,426)(689,377)])
+}
+Add(Hub,2769126,511,455)
+{
+ link(onEvent1,10640481:doSave,[(647,461)(647,230)])
+ link(onEvent2,1831649:doEvent7,[(689,468)(689,384)])
 }
