@@ -1,0 +1,30 @@
+Make(delphi)
+ver(4.04 build 184)
+Add(MainForm,2953706,490,371)
+{
+ Width=1364
+ Height=741
+ link(onCreate,271161:doConsoleExec,[])
+}
+Add(WinExec,271161,686,371)
+{
+ Param="C:\Users\TihonD\Desktop\Sakura\Kobato\Lines\S2\S2.ino --verify"
+ FileName="C:\Program Files (x86)\Arduino\arduino.exe"
+ Point(doConsoleExec)
+ Point(onConsoleResult)
+ Point(onConsoleTerminate)
+ link(onConsoleResult,12627644:doAdd,[])
+ link(onConsoleTerminate,6286144:doOn,[(751,391)(751,461)])
+}
+Add(Memo,12627644,931,378)
+{
+ Left=230
+ Top=95
+ Width=555
+ Height=355
+}
+Add(LED,6286144,931,441)
+{
+ Left=780
+ Top=480
+}
