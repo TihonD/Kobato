@@ -8,13 +8,18 @@ Add(MainForm,2953706,490,371)
 }
 Add(WinExec,271161,686,371)
 {
- Param="C:\Users\TihonD\Desktop\Sakura\Kobato\Lines\S2\S2.ino --verify"
+ Param="C:\Users\TihonD\Desktop\Sakura\Kobato\Lines\S2\S2.ino --upload -v"
  FileName="C:\Program Files (x86)\Arduino\arduino.exe"
+ Mode=0
+ RunEvent=1
  Point(doConsoleExec)
  Point(onConsoleResult)
  Point(onConsoleTerminate)
- link(onConsoleResult,12627644:doAdd,[])
- link(onConsoleTerminate,6286144:doOn,[(751,391)(751,461)])
+ Point(onConsoleError)
+ link(onExec,5535894:doWork1,[(751,377)])
+ link(onConsoleResult,5383447:doEvent1,[])
+ link(onConsoleTerminate,5535894:doWork2,[])
+ link(onConsoleError,5383447:doEvent2,[(772,398)(772,391)])
 }
 Add(Memo,12627644,931,378)
 {
@@ -22,9 +27,31 @@ Add(Memo,12627644,931,378)
  Top=95
  Width=555
  Height=355
+ ScrollBars=3
 }
-Add(LED,6286144,931,441)
+Add(LED,6286144,1043,525)
 {
  Left=780
  Top=480
+ ColorOn=16776960
+}
+Add(HubEx,5535894,747,385)
+{
+ Angle=1
+}
+Add(Hub,5383447,826,378)
+{
+ InCount=2
+ link(onEvent1,6306147:doValue,[])
+ link(onEvent2,2988230:doCompare,[(858,391)(858,538)])
+}
+Add(StrMask,2988230,875,532)
+{
+ Mask="*done*"
+ link(onTrue,6286144:doOn,[])
+ link(Str,6306147:Value,[])
+}
+Add(Memory,6306147,875,378)
+{
+ link(onData,12627644:doAdd,[])
 }
