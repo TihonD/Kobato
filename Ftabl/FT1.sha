@@ -1,0 +1,115 @@
+Make(delphi)
+ver(4.04 build 184)
+Add(MainForm,2953706,21,105)
+{
+ Width=790
+ Height=501
+ link(onCreate,15670216:doEvent1,[(173,125)(173,181)])
+}
+Add(StringTable,15375165,427,175)
+{
+ Left=20
+ Top=45
+ Width=660
+ Height=310
+ Columns=#8:Название|9:Аргументы|9:Результат|15:Комментарий=250|
+ Point(Strings)
+ Point(doSelect)
+ Point(doEnsureVisible)
+ link(onClick,3870284:doRead,[(471,181)(471,227)(429,227)(429,272)])
+}
+Add(ArrayRW,3870284,441,266)
+{
+ link(onRead,3402927:doSplit,[])
+ link(Array,12492858:Var2,[])
+}
+Add(DoData,6413948,294,175)
+{
+ Data=String(setup;;void;Начальная настройка)
+ link(onEventData,15624950:doWork2,[])
+}
+Add(DoData,8007786,294,217)
+{
+ Data=String(loop;;void;Повторяющиеся действия)
+ link(onEventData,15624950:doWork3,[(340,223)])
+}
+Add(HubEx,15624950,336,175)
+{
+ link(onEvent,15375165:doAdd,[])
+}
+Add(Hub,15670216,252,175)
+{
+ link(onEvent1,6413948:doData,[])
+ link(onEvent2,8007786:doData,[(280,188)(280,223)])
+}
+Add(Edit,7773254,329,35)
+{
+ Left=20
+ Top=15
+ Width=660
+ link(onChange,12987382:doEvent1,[])
+}
+Add(MultiStrPart,3402927,504,266)
+{
+ Count=4
+ link(onSplit,3101826:doString,[(548,272)(548,296)(492,296)(492,321)])
+}
+Add(FormatStr,3101826,504,315)
+{
+ DataCount=4
+ Mask="%3 %1 (%2) {//%4"
+ link(onFString,7773254:doText2,[(548,321)(548,188)(317,188)(317,48)])
+ link(Str1,3402927:Part1,[])
+ link(Str2,3402927:Part2,[])
+ link(Str3,3402927:Part3,[])
+ link(Str4,3402927:Part4,[])
+}
+Add(MultiStrPart,14522483,420,42)
+{
+ Char=" "
+ Count=3
+ link(onSplit,1862731:doEnum,[])
+}
+Add(ArrayEnum,1862731,497,42)
+{
+ link(onItem,3065704:doSplit,[])
+ link(Array,12492858:Var3,[(503,30)(477,30)(477,243)])
+}
+Add(GetDataEx,12492858,441,238)
+{
+ link(Data,15375165:Strings,[])
+}
+Add(MultiStrPart,3065704,546,42)
+{
+ Count=4
+ link(onSplit,2262998:doEvent1,[])
+}
+Add(If_else,2706657,637,42)
+{
+ link(onTrue,7274529:doData,[])
+ link(Op1,3065704:Part1,[(643,30)(577,30)(577,86)(552,86)])
+ link(Op2,14522483:Part2,[(650,16)(536,16)(536,86)(433,86)])
+}
+Add(DoData,7274529,686,42)
+{
+ link(onEventData,11894642:doWork2,[])
+ link(Data,1862731:Index,[(692,30)(740,30)(740,99)(510,99)])
+}
+Add(Hub,2262998,588,42)
+{
+ link(onEvent1,2706657:doCompare,[])
+}
+Add(DoData,11391375,546,105)
+{
+ Data=Integer(-1)
+ link(onEventData,11894642:doWork3,[(732,111)])
+}
+Add(HubEx,11894642,728,42)
+{
+ link(onEvent,15375165:doSelect,[(754,48)(754,369)(415,369)(415,216)])
+}
+Add(Hub,12987382,378,35)
+{
+ link(onEvent1,11391375:doData,[(504,41)(504,111)])
+ link(onEvent2,14522483:doSplit,[])
+}
