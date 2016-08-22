@@ -224,7 +224,7 @@ Add(HilightMemo,10640481,770,189)
  Point(PositionY)
  Point(onMouseUp)
  link(onChange,3574833:doWork1,[(900,195)])
- link(Str,1098780:Text,[])
+ link(Str,3281080:Var,[])
  link(onMouseUp,1831649:doEvent1,[(828,202)(828,342)])
 }
 Add(Button,12693533,392,203)
@@ -1908,7 +1908,7 @@ Add(GetDataEx,13655478,581,168)
 Add(GetDataEx,813644,693,264)
 {
  Angle=1
- link(Data,6156398:Var1,[])
+ link(Data,1421444:Var1,[])
 }
 Add(DoData,5245103,924,336)
 {
@@ -3889,6 +3889,7 @@ Add(IndexToChanel,13159227,1624,560)
  Point(Index)
  link(onEvent1,11816271:doWork3,[(1668,566)(1668,410)(459,410)])
  link(onEvent2,7340017:doEvent2,[(1679,573)(1679,545)(1584,545)(1584,517)])
+ link(onEvent3,13306169:doEvent1,[(1668,580)(1668,559)(646,559)(646,538)])
  link(onEvent4,1097228:doMessage,[(1668,587)(1668,605)(1591,605)(1591,622)])
  link(onEvent8,6277553:doWork3,[(1668,615)(1668,413)(487,413)])
  link(Index,13362004:Var1,[(1630,548)(1588,548)])
@@ -3904,7 +3905,7 @@ Add(HubEx,6277553,483,203)
 Add(Message,1097228,1603,616)
 {
  link(Message,13362004:Var3,[(1609,604)])
- link(Caption,336552:Var3,[(1616,173)])
+ link(Caption,13942392:Var3,[(1616,173)])
 }
 Add(GetDataEx,336552,700,168)
 {
@@ -3935,10 +3936,11 @@ Add(HubEx,11816271,455,245)
 {
  link(onEvent,3228024:doEvent1,[])
 }
-Add(Hub,3228024,504,245)
+Add(Hub,3228024,497,245)
 {
+ InCount=2
  OutCount=3
- link(onEvent1,14710012:doData,[])
+ link(onEvent1,11952762:doWork2,[])
  link(onEvent2,3414738:doWork2,[(570,258)(570,300)])
 }
 Add(GetDataEx,9935613,630,168)
@@ -4564,4 +4566,45 @@ Add(GetDataEx,7297655,1799,686)
 {
  Angle=3
  link(Data,3275831:Var3,[])
+}
+Add(GetIndexData,3281080,770,126)
+{
+ link(Data1,1098780:Text,[])
+ link(Data2,15993233:Item,[(783,114)(755,114)(755,583)(727,583)])
+}
+Add(ChanelToIndex,4317262,721,126)
+{
+ link(onIndex,3281080:doIndex,[])
+}
+Add(ArrayRW,15993233,721,539)
+{
+ link(onRead,6868032:doEvent1,[])
+ link(Array,1421444:Var2,[])
+ link(Index,13942392:Var2,[])
+}
+Add(GetDataEx,1421444,721,264)
+{
+ Angle=1
+ link(Data,6156398:Var1,[])
+}
+Add(GetDataEx,13942392,728,168)
+{
+ Angle=3
+ link(Data,336552:Var3,[])
+}
+Add(Hub,6868032,770,539)
+{
+ OutCount=3
+ link(onEvent1,11952762:doWork3,[(796,545)(796,399)(522,399)])
+ link(onEvent2,4317262:doWork1,[(796,552)(796,342)(709,342)(709,132)])
+ link(onEvent3,3536864:doEvent4,[(864,559)(864,594)])
+}
+Add(Hub,13306169,658,532)
+{
+ link(onEvent1,4317262:doWork2,[(696,538)(696,139)])
+ link(onEvent2,15993233:doRead,[])
+}
+Add(HubEx,11952762,518,245)
+{
+ link(onEvent,14710012:doData,[])
 }
