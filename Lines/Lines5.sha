@@ -10,7 +10,7 @@ BEGIN_SDK
   Add(EditMultiEx,14830881,21,21)
   {
    WorkCount=#9:doRefresh|7:doClear|5:MrkOn|6:MrkOff|
-   EventCount=#11:onMouseMove|12:onMouseLeave|9:onMouseUp|8:onEvent1|11:onEventData|6:Redraw|
+   EventCount=#11:onMouseMove|12:onMouseLeave|9:onMouseUp|8:onEvent1|11:onEventData|6:Redraw|4:Move|
    VarCount=#6:Bitmap|6:MouseY|
    Width=1476
    Height=795
@@ -18,8 +18,8 @@ BEGIN_SDK
    link(doClear,9426546:doClear,[(181,34)(181,167)])
    link(Bitmap,3637054:Var1,[(27,336)])
    link(MouseY,13449926:Var2,[(34,353)(405,353)])
-   link(MrkOn,10493227:doWork2,[(298,41)(298,664)])
-   link(MrkOff,10493227:doWork1,[(283,48)(283,657)])
+   link(MrkOn,9053239:doWork2,[(298,41)(298,664)])
+   link(MrkOff,13848883:doWork2,[(283,48)(283,657)])
   }
   Add(PanelRush,2036058,455,56)
   {
@@ -55,8 +55,8 @@ BEGIN_SDK
    Point(onMouseLeave)
    Point(Width)
    Point(Height)
-   link(onMouseUp,10340690:doEvent1,[])
-   link(onMouseMove,1707034:doEvent1,[])
+   link(onMouseUp,10340690:doEvent1,[(484,167)(484,125)])
+   link(onMouseMove,1707034:doEvent1,[(532,181)(532,160)])
    link(onMouseLeave,15185904:doEvent1,[])
   }
   Add(ScrollBar,16519338,567,371)
@@ -151,7 +151,7 @@ BEGIN_SDK
   Add(GetDataEx,12619808,868,301)
   {
    Angle=3
-   link(Data,13449926:Var3,[])
+   link(Data,15808772:Var3,[])
   }
   Add(Memory,16723672,1064,196)
   {
@@ -175,20 +175,25 @@ BEGIN_SDK
    Angle=3
    link(Data,1637018:Var3,[])
   }
-  Add(Hub,1707034,532,175)
+  Add(Hub,1707034,553,154)
   {
-   link(onEvent1,14830881:onMouseMove,[(606,181)(606,27)])
-   link(onEvent2,2453321:doCalc,[(725,188)(725,356)])
+   OutCount=3
+   link(onEvent1,14830881:onMouseMove,[(606,160)(606,27)])
+   link(onEvent2,2453321:doCalc,[(725,167)(725,356)])
   }
-  Add(Hub,15185904,511,189)
+  Add(Hub,15185904,553,189)
   {
+   OutCount=3
    link(onEvent1,14830881:onMouseLeave,[(623,195)(623,34)])
    link(onEvent2,16697515:doData,[])
+   link(onEvent3,3368547:doWork3,[(710,209)])
   }
-  Add(Hub,10340690,553,161)
+  Add(Hub,10340690,553,119)
   {
-   link(onEvent1,14830881:onMouseUp,[(614,167)(614,41)])
-   link(onEvent2,75628:doData,[(745,174)(745,419)])
+   OutCount=3
+   link(onEvent1,14830881:onMouseUp,[(614,125)(614,41)])
+   link(onEvent2,75628:doData,[(745,132)(745,419)])
+   link(onEvent3,3368547:doWork2,[])
   }
   Add(GetDataEx,3637054,385,331)
   {
@@ -228,7 +233,7 @@ BEGIN_SDK
    ResultType=0
    link(onResult,14171453:doFor,[])
    link(X1,13838812:Var3,[(937,394)])
-   link(X2,12673956:Var3,[(944,320)])
+   link(X2,4188041:Var2,[])
   }
   Add(DoData,11943121,1092,721)
   {
@@ -252,8 +257,8 @@ BEGIN_SDK
   }
   Add(For,14171453,1008,721)
   {
-   Start=-10
-   End=10
+   Start=-5
+   End=5
    link(onEvent,11943121:doData,[])
   }
   Add(Hub,785951,896,714)
@@ -291,6 +296,103 @@ BEGIN_SDK
   Add(HubEx,5529545,917,714)
   {
    link(onEvent,14830881:Redraw,[(1204,720)(1204,62)])
+  }
+  Add(Memory,11608101,819,49)
+  {
+  }
+  Add(ChanelToIndex,10930486,770,49)
+  {
+   link(onIndex,11608101:doValue,[])
+  }
+  Add(IndexToChanel,1032447,770,112)
+  {
+   link(onEvent1,11516975:doEvent,[])
+  }
+  Add(IndexToChanel,11516975,819,112)
+  {
+   Point(Index)
+   link(onEvent2,12710825:doCalc,[])
+   link(Index,11608101:Value,[])
+  }
+  Add(DoData,8546679,868,63)
+  {
+   link(onEventData,6727391:doValue,[])
+   link(Data,5891045:Var2,[(874,44)(860,44)])
+  }
+  Add(Hub,8189569,728,77)
+  {
+   link(onEvent1,10930486:doWork2,[(756,83)(756,62)])
+   link(onEvent2,8546679:doData,[(805,90)(805,69)])
+  }
+  Add(IndexToChanel,13638885,672,77)
+  {
+   link(onEvent1,8189569:doEvent1,[])
+  }
+  Add(Memory,6727391,924,63)
+  {
+  }
+  Add(GetDataEx,15808772,854,301)
+  {
+   Angle=3
+   link(Data,13449926:Var3,[])
+  }
+  Add(GetDataEx,5891045,854,91)
+  {
+   Angle=2
+   link(Data,15808772:Var1,[])
+  }
+  Add(MathParse,12710825,917,119)
+  {
+   MathStr="abs(%1 - %2)"
+   link(onResult,5062107:doCompare,[])
+   link(X1,5891045:Var3,[(923,96)])
+   link(X2,6727391:Value,[])
+  }
+  Add(If_else,5062107,973,119)
+  {
+   Type=2
+   link(onTrue,5638635:doWork2,[])
+   link(Op1,12710825:Result,[(979,107)(951,107)(951,163)(923,163)])
+   link(Op2,4188041:Var1,[(986,98)(944,98)])
+  }
+  Add(GetDataEx,4188041,938,315)
+  {
+   Angle=3
+   link(Data,12673956:Var3,[])
+  }
+  Add(HubEx,3368547,706,133)
+  {
+   Angle=3
+  }
+  Add(DoData,12680863,1246,126)
+  {
+   link(onEventData,14830881:Move,[(1286,132)(1286,69)])
+  }
+  Add(IndexToChanel,10779048,700,581)
+  {
+   Point(Index)
+   link(onEvent1,13848883:doWork1,[(753,587)])
+   link(onEvent2,9053239:doWork1,[(746,594)])
+  }
+  Add(HubEx,9053239,742,658)
+  {
+   link(onEvent,10493227:doWork2,[])
+  }
+  Add(HubEx,13848883,749,651)
+  {
+   link(onEvent,10493227:doWork1,[])
+  }
+  Add(Memory,6044451,1092,112)
+  {
+  }
+  Add(ChanelToIndex,5638635,1043,112)
+  {
+   link(onIndex,6044451:doValue,[])
+  }
+  Add(Hub,14128435,721,49)
+  {
+   link(onEvent1,10930486:doWork1,[])
+   link(onEvent2,5638635:doWork1,[(750,62)(750,118)])
   }
 END_SDK
 Add(Edit,9861362,567,77)
@@ -2708,10 +2810,10 @@ Add(GetDataEx,14781095,1372,686)
  Angle=3
  link(Data,15924578:Var3,[])
 }
-Add(Hub,4954396,2100,749)
+Add(Hub,4954396,2331,749)
 {
  InCount=7
- link(onEvent1,6811492:doWork2,[(2126,755)(2126,535)])
+ link(onEvent1,10381121:doWork3,[(2357,755)])
 }
 Add(StrMask,11284889,1456,714)
 {
@@ -3662,11 +3764,11 @@ Add(GetDataEx,14797407,1631,686)
  Angle=3
  link(Data,890187:Var3,[])
 }
-Add(MultiElement,6710229,1974,672)
+Add(MultiElement,6710229,2373,714)
 {
- link(onEvent1,6811492:doWork3,[(2034,678)])
- link(Data1,12660823:Var3,[(1980,649)])
- link(Data2,4617914:Var1,[(1987,658)(1693,658)])
+ link(onEvent1,10381121:doWork2,[(2491,720)(2491,535)])
+ link(Data1,5103906:Var1,[(2379,607)(1686,607)])
+ link(Data2,4617914:Var1,[(2386,617)(1693,617)])
 }
 BEGIN_SDK
   Add(EditMulti,14715207,21,21)
@@ -3911,11 +4013,6 @@ Add(GetDataEx,4617914,1687,686)
  Angle=3
  link(Data,14797407:Var3,[])
 }
-Add(HubEx,6811492,2030,529)
-{
- Angle=2
- link(onEvent,15601100:doRefresh,[(1424,535)(1424,454)])
-}
 Add(Label,7501365,2051,469)
 {
  Left=910
@@ -3984,7 +4081,7 @@ Add(IndexToChanel,13159227,1806,301)
  link(onEvent1,11816271:doWork3,[(1843,307)(1843,410)(459,410)])
  link(onEvent2,7340017:doEvent2,[(1861,314)(1861,286)(1766,286)(1766,237)])
  link(onEvent3,13306169:doEvent1,[(1843,321)(1843,559)(646,559)(646,538)])
- link(onEvent6,5433037:doValue,[(1869,342)(1869,225)(1747,225)(1747,118)])
+ link(onEvent6,7654163:doData,[(1869,342)(1869,225)(1747,225)(1747,118)])
  link(onEvent8,6277553:doWork3,[(1843,356)(1843,413)(487,413)])
  link(Index,13362004:Var1,[(1812,289)(1770,289)])
 }
@@ -4447,7 +4544,7 @@ Add(Hub,2769126,511,455)
 Add(StrMask,3826086,1799,714)
 {
  Mask="*define*"
- link(onFalse,6710229:doWork1,[(1903,720)(1903,678)])
+ link(onFalse,5858447:doCompare,[])
  link(onTrue,5490643:doWork1,[(1839,727)(1839,797)])
  link(Str,7297655:Var2,[])
 }
@@ -4455,7 +4552,7 @@ Add(MultiElement,5490643,1848,791)
 {
  link(onEvent1,4954396:doEvent7,[])
  link(Data1,12660823:Var2,[])
- link(Data2,7297655:Var3,[(1861,691)])
+ link(Data2,11100019:Var2,[])
 }
 BEGIN_SDK
   Add(EditMulti,14715207,21,21)
@@ -4705,7 +4802,7 @@ Add(HubEx,11952762,518,245)
 {
  link(onEvent,14710012:doData,[])
 }
-Add(Memory,267528,1862,105)
+Add(Memory,267528,1904,105)
 {
  link(onData,4040194:doEvent,[(1947,111)(1947,393)(1339,393)(1339,489)])
 }
@@ -4714,7 +4811,7 @@ Add(Hub,11005992,1631,259)
  link(onEvent1,6314246:doWork3,[(1729,265)])
  link(onEvent2,7320919:doPopupHere,[(1659,272)(1659,307)])
 }
-Add(ChanelToIndex,12278841,1813,105)
+Add(ChanelToIndex,12278841,1855,105)
 {
  link(onIndex,267528:doValue,[])
 }
@@ -4723,7 +4820,7 @@ Add(IndexToChanel,2546481,1624,224)
  Point(Index)
  link(onEvent1,7340017:doEvent1,[])
  link(onEvent2,2352545:doEvent1,[])
- link(Index,267528:Value,[(1630,180)(1868,180)])
+ link(Index,267528:Value,[(1630,180)(1910,180)])
 }
 Add(Hub,2352545,1673,231)
 {
@@ -4781,11 +4878,10 @@ Add(DoData,10725620,2156,196)
  link(onEventData,9379158:doWork1,[(2200,202)(2200,218)(639,218)])
  link(Data,4520091:Var3,[(2162,173)])
 }
-Add(Memory,5433037,1764,112)
+Add(Memory,5433037,1806,112)
 {
  Point(Data)
  link(onData,12278841:doWork2,[])
- link(Data,15120690:Var1,[(1770,100)(1742,100)])
 }
 Add(GetDataEx,15120690,1736,168)
 {
@@ -4800,7 +4896,7 @@ Add(DoData,16222832,2163,245)
 Add(GetDataEx,13056762,2079,151)
 {
  Angle=3
- link(Data,5433037:Value,[(1770,156)])
+ link(Data,5433037:Value,[(1812,156)])
 }
 Add(HubEx,7536975,623,203)
 {
@@ -4839,4 +4935,232 @@ Add(GetDataEx,4520091,2121,168)
 {
  Angle=3
  link(Data,10763470:Var3,[])
+}
+Add(DoData,7654163,1757,112)
+{
+ link(onEventData,5433037:doValue,[])
+ link(Data,15120690:Var1,[(1763,100)(1742,100)])
+}
+Add(StrMask,5858447,1883,714)
+{
+ Mask="//*"
+ link(onFalse,6710229:doWork1,[])
+ link(onTrue,3847202:doWork1,[(1923,727)(1923,804)])
+ link(Str,2500369:Var2,[])
+}
+Add(MultiElement,3847202,1932,798)
+{
+ link(Data1,12660823:Var3,[(1938,649)])
+ link(Data2,2500369:Var3,[(1945,691)])
+}
+BEGIN_SDK
+  Add(EditMulti,14715207,21,21)
+  {
+   EventCount=1
+   WorkCount=1
+   DataCount=2
+   Width=1245
+   Height=592
+   link(doWork1,4170678:doSplit,[(126,27)(126,447)])
+  }
+  Add(MultiStrData,4170678,231,441)
+  {
+   Char="/"
+   Count=1
+   link(Str,14715207:Data2,[(237,231)(34,231)])
+   link(onPart1,14994772:doSplit,[])
+  }
+  Add(MultiStrData,15970683,280,497)
+  {
+   Char="""
+   Count=1
+  }
+  Add(Img_Rectangle,5024875,539,455)
+  {
+   rX=10
+   rY=10
+   Color=15780518
+   BgColor=15780518
+   Style=1
+   Point(Point1)
+   Point(Point2)
+   link(onDraw,6021134:doWork3,[(576,461)])
+   link(Bitmap,12159146:Var2,[])
+   link(Point1,10888781:Point,[])
+   link(Point2,15962377:Point,[(566,408)(608,408)])
+  }
+  Add(PointXY,10888781,553,266)
+  {
+   link(X,4704462:Var2,[])
+   link(Y,1764662:Var2,[])
+  }
+  Add(PointXY,15962377,602,266)
+  {
+   link(X,14916211:Result,[])
+   link(Y,7443005:Var1,[(615,257)])
+  }
+  Add(GlobalVar,11281756,553,98)
+  {
+   Name="BlockH"
+   Data=Integer(30)
+  }
+  Add(GlobalVar,12522541,637,98)
+  {
+   Name="BlockL"
+   Data=Integer(350)
+  }
+  Add(GlobalVar,13941832,714,98)
+  {
+   Name="BlockTab"
+   Data=Integer(35)
+  }
+  Add(Math,15600355,504,154)
+  {
+   OpType=2
+   link(onResult,9948732:doOperation,[])
+   link(Op1,2144258:Var,[(510,105)(727,105)])
+   link(Op2,13941832:Var,[(517,133)(720,133)])
+  }
+  Add(GlobalVar,7769929,483,56)
+  {
+   Name="CurY"
+  }
+  Add(GlobalVar,2144258,721,63)
+  {
+   Name="CurTab"
+  }
+  Add(Math,14916211,602,154)
+  {
+   link(onResult,16582385:doOperation,[])
+   link(Op1,14901987:Var1,[(608,149)(585,149)])
+   link(Op2,12522541:Var,[(615,133)(643,133)])
+  }
+  Add(GetDataEx,4704462,553,238)
+  {
+   link(Data,9948732:Result,[])
+  }
+  Add(Math,6556490,700,154)
+  {
+   link(onResult,5024875:doDraw,[(758,160)(758,335)(527,335)(527,461)])
+   link(Op1,11672775:Var1,[(706,149)(610,149)])
+   link(Op2,11281756:Var,[(713,133)(559,133)])
+  }
+  Add(GetDataEx,1764662,560,245)
+  {
+   link(Data,14592406:Result,[(566,240)(468,240)])
+  }
+  Add(FormatStr,11883111,567,532)
+  {
+   Mask="%1"
+   link(onFString,12752962:doValue,[])
+   link(Str1,3769922:Value,[(573,502)(335,502)])
+  }
+  Add(Memory,3769922,329,441)
+  {
+   Point(Data)
+   link(onData,4799228:doEvent1,[])
+   link(Data,14994772:RemaindStr,[(335,429)(311,429)(311,485)(286,485)])
+  }
+  Add(Hub,4799228,371,441)
+  {
+   OutCount=3
+   link(onEvent1,14592406:doOperation,[(420,447)(420,160)])
+   link(onEvent2,11883111:doString,[(476,454)(476,538)])
+   link(onEvent3,1925739:doData,[(397,461)(397,499)(366,499)(366,538)])
+  }
+  Add(Img_Text,1903072,749,532)
+  {
+   Font=[Neucha,12,0,0,204]
+   Point(X)
+   Point(Y)
+   link(onDraw,6021134:doWork2,[(793,538)(793,303)])
+   link(Bitmap,12159146:Var3,[(755,327)])
+   link(Text,12752962:Value,[(762,520)(646,520)(646,576)(615,576)])
+   link(X,7586409:Result,[(769,520)(717,520)(717,576)(664,576)])
+   link(Y,8341674:Result,[(776,520)(741,520)(741,576)(706,576)])
+  }
+  Add(GetDataEx,12159146,539,322)
+  {
+   Angle=3
+   link(Data,14715207:Data1,[(27,327)])
+  }
+  Add(Memory,12752962,609,532)
+  {
+   link(onData,7586409:doOperation,[])
+  }
+  Add(DoData,1925739,378,532)
+  {
+   link(onEventData,7769929:doValue,[(446,538)(446,62)])
+   link(Data,7443005:Var2,[(384,393)(706,393)])
+  }
+  Add(GetDataEx,7443005,700,252)
+  {
+   link(Data,6556490:Result,[])
+  }
+  Add(Math,7586409,658,532)
+  {
+   Op2=5
+   link(onResult,8341674:doOperation,[])
+   link(Op1,14901987:Var3,[(664,243)])
+  }
+  Add(Math,8341674,700,532)
+  {
+   Op2=5
+   link(onResult,1903072:doDraw,[])
+   link(Op1,11672775:Var3,[(706,250)])
+  }
+  Add(GetDataEx,14901987,579,238)
+  {
+   Angle=3
+   link(Data,4704462:Var3,[])
+  }
+  Add(GetDataEx,11672775,604,245)
+  {
+   Angle=3
+   link(Data,1764662:Var3,[])
+  }
+  Add(HubEx,6021134,572,297)
+  {
+   Angle=2
+   link(onEvent,14715207:onEvent1,[(567,303)(567,27)])
+  }
+  Add(Math,14592406,462,154)
+  {
+   Op2=5
+   link(onResult,15600355:doOperation,[])
+   link(Op1,7769929:Var,[(468,112)(489,112)])
+  }
+  Add(Math,16582385,651,154)
+  {
+   Op2=5
+   link(onResult,6556490:doOperation,[])
+  }
+  Add(Math,9948732,553,154)
+  {
+   Op2=5
+   link(onResult,14916211:doOperation,[])
+   link(Op1,15600355:Result,[(559,142)(535,142)(535,198)(510,198)])
+  }
+  Add(MultiStrData,14994772,280,441)
+  {
+   Char="/"
+   Count=1
+   link(Str,4170678:RemaindStr,[(286,429)(262,429)(262,485)(237,485)])
+   link(onPart1,3769922:doValue,[])
+  }
+END_SDK
+Add(GetDataEx,11100019,1855,686)
+{
+ Angle=3
+ link(Data,7297655:Var3,[])
+}
+Add(HubEx,10381121,2353,529)
+{
+ Angle=2
+ link(onEvent,15601100:doRefresh,[(1424,535)(1424,454)])
+}
+Add(GetDataEx,2500369,1883,686)
+{
+ Angle=3
+ link(Data,11100019:Var3,[])
 }
