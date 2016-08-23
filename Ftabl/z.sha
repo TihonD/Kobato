@@ -1,0 +1,35 @@
+Add(MainForm,3990039,112,119)
+{
+ Caption="Пример использования Replace"
+}
+Add(Edit,12980779,168,119)
+{
+ Left=170
+ Top=35
+ Width=55
+ Text="HiiASM "
+}
+Add(Button,517459,112,175)
+{
+ Left=170
+ Top=80
+ link(onClick,1034163:doReplace,[])
+}
+Add(Label,1634708,224,175)
+{
+ Left=5
+ Top=140
+ Width=380
+ Height=111
+ Font=[MS Sans Serif,20,0,0,1]
+ Caption="!"
+ AutoSize=1
+ Alignment=2
+}
+Add(Replace,1034163,168,175)
+{
+ SubStr="iASM"
+ DestStr="asm"
+ link(onReplace,1634708:doText,[])
+ link(Str,12980779:Text,[])
+}

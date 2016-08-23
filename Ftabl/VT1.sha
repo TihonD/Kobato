@@ -1,0 +1,673 @@
+Make(delphi)
+ver(4.04 build 184)
+Add(MainForm,2953706,21,105)
+{
+ Width=1048
+ Height=501
+ link(onCreate,15670216:doEvent1,[(117,125)(117,181)])
+}
+Add(StringTable,15375165,427,175)
+{
+ Left=20
+ Top=45
+ Width=660
+ Height=310
+ Columns=#8:Название|3:Тип|6:Массив|8:Значение|11:Доступность|15:Комментарий=250|
+ Point(Strings)
+ Point(doSelect)
+ Point(doEnsureVisible)
+ link(onClick,10652231:doValue,[])
+}
+Add(ArrayRW,3870284,441,266)
+{
+ link(onRead,3402927:doSplit,[])
+ link(Array,12492858:Var2,[])
+ link(Index,10652231:Value,[(454,251)(496,251)])
+}
+Add(DoData,6413948,224,175)
+{
+ Data=String(setup;;void;Начальная настройка)
+ link(onEventData,15624950:doWork2,[])
+}
+Add(DoData,8007786,224,217)
+{
+ Data=String(loop;;void;Повторяющиеся действия)
+ link(onEventData,15624950:doWork3,[(270,223)])
+}
+Add(HubEx,15624950,266,175)
+{
+}
+Add(Hub,15670216,182,175)
+{
+ link(onEvent1,6413948:doData,[])
+ link(onEvent2,8007786:doData,[(210,188)(210,223)])
+}
+Add(Edit,7773254,294,28)
+{
+ Left=20
+ Top=15
+ Width=660
+ link(onChange,12987382:doEvent1,[])
+}
+Add(MultiStrPart,3402927,532,266)
+{
+ Count=4
+ link(onSplit,1357869:doEvent,[(576,272)(576,307)(387,307)(387,384)])
+}
+Add(FormatStr,3101826,532,350)
+{
+ DataCount=4
+ Mask="%3 %1 (%2) {//%4"
+ link(onFString,11126262:doWork2,[])
+ link(Str1,3793743:Var2,[])
+ link(Str2,10473526:Var2,[])
+ link(Str3,4302811:Var2,[])
+ link(Str4,12220027:Var2,[])
+}
+Add(MultiStrPart,14522483,420,42)
+{
+ Char=" "
+ Count=3
+ link(onSplit,1862731:doEnum,[])
+}
+Add(ArrayEnum,1862731,497,42)
+{
+ link(onItem,3065704:doSplit,[])
+ link(Array,12492858:Var3,[(503,30)(477,30)(477,243)])
+}
+Add(GetDataEx,12492858,441,238)
+{
+ link(Data,15375165:Strings,[])
+}
+Add(MultiStrPart,3065704,546,42)
+{
+ Count=4
+ link(onSplit,2706657:doCompare,[])
+}
+Add(If_else,2706657,637,42)
+{
+ link(onTrue,328918:doEvent1,[])
+ link(onFalse,10111255:doCompare,[(677,55)(677,69)])
+ link(Op1,6168495:Var2,[])
+ link(Op2,14522483:Part2,[(650,16)(536,16)(536,86)(433,86)])
+}
+Add(DoData,7274529,812,42)
+{
+ link(onEventData,11894642:doWork2,[])
+ link(Data,1862731:Index,[(818,15)(659,15)(659,101)(510,101)])
+}
+Add(DoData,11391375,497,105)
+{
+ Data=Integer(-1)
+ link(onEventData,11894642:doWork3,[(858,111)])
+}
+Add(HubEx,11894642,854,42)
+{
+}
+Add(Hub,12987382,343,28)
+{
+ OutCount=4
+ link(onEvent1,16301861:doWork2,[(364,34)(364,118)])
+ link(onEvent2,11391375:doData,[(462,41)(462,111)])
+ link(onEvent3,14522483:doSplit,[])
+ link(onEvent4,16301861:doWork1,[(364,55)(364,111)])
+}
+Add(CheckBox,15941101,644,189)
+{
+ Left=110
+ Top=375
+ Width=95
+ Caption="Комментарии"
+ link(onCheck,16293271:doWork2,[(688,195)(688,238)])
+}
+Add(FormatStr,11839666,567,378)
+{
+ DataCount=4
+ Mask="%3 %1 (%2) {"
+ link(onFString,11126262:doWork3,[(613,384)])
+ link(Str1,2772362:Var2,[])
+ link(Str2,8169123:Var2,[])
+ link(Str3,5818467:Var2,[])
+}
+Add(GetDataEx,3793743,532,329)
+{
+ link(Data,3402927:Part1,[])
+}
+Add(GetDataEx,10473526,539,322)
+{
+ link(Data,3402927:Part2,[])
+}
+Add(GetDataEx,4302811,546,315)
+{
+ link(Data,3402927:Part3,[])
+}
+Add(IndexToChanel,3047882,469,378)
+{
+ Point(Index)
+ link(onEvent1,11839666:doString,[])
+ link(onEvent2,3101826:doString,[(517,391)(517,356)])
+ link(Index,633793:Var1,[(475,365)])
+}
+Add(HubEx,11126262,609,350)
+{
+ Angle=3
+ link(onEvent,7773254:doText2,[(613,166)(275,166)(275,41)])
+}
+Add(FormatStr,12924777,616,441)
+{
+ DataCount=4
+ Mask="%1 (%2); //%4"
+ link(onFString,1947757:doWork2,[])
+ link(Str1,15073865:Var2,[])
+ link(Str2,3912147:Var2,[])
+ link(Str3,14836120:Var2,[])
+ link(Str4,12220027:Var3,[(643,313)])
+}
+Add(GetDataEx,2772362,567,329)
+{
+ Angle=3
+ link(Data,3793743:Var3,[])
+}
+Add(GetDataEx,8169123,574,322)
+{
+ Angle=3
+ link(Data,10473526:Var3,[])
+}
+Add(GetDataEx,5818467,581,315)
+{
+ Angle=3
+ link(Data,4302811:Var3,[])
+}
+Add(GetDataEx,12220027,553,308)
+{
+ link(Data,3402927:Part4,[])
+}
+Add(FormatStr,7030677,651,469)
+{
+ DataCount=4
+ Mask="%1 (%2);"
+ link(onFString,1947757:doWork3,[(694,475)])
+ link(Str1,15073865:Var3,[(657,334)])
+ link(Str2,3912147:Var3,[(664,327)])
+ link(Str3,14836120:Var3,[(671,320)])
+}
+Add(GetDataEx,15073865,616,329)
+{
+ Angle=3
+ link(Data,2772362:Var3,[])
+}
+Add(GetDataEx,3912147,623,322)
+{
+ Angle=3
+ link(Data,8169123:Var3,[])
+}
+Add(GetDataEx,14836120,630,315)
+{
+ Angle=3
+ link(Data,5818467:Var3,[])
+}
+Add(IndexToChanel,9710857,518,469)
+{
+ Point(Index)
+ link(onEvent1,7030677:doString,[])
+ link(onEvent2,12924777:doString,[(601,482)(601,447)])
+ link(Index,633793:Var2,[])
+}
+Add(GetDataEx,633793,518,360)
+{
+ Angle=1
+ link(Data,15941101:Checked,[(650,365)])
+}
+Add(IndexToChanel,1357869,399,378)
+{
+ Point(Index)
+ link(onEvent1,3047882:doEvent,[])
+ link(onEvent2,9710857:doEvent,[(460,391)(460,475)])
+ link(Index,6235247:Selected,[(405,348)(230,348)])
+}
+Add(RadioButton,6235247,224,280)
+{
+ Left=50
+ Top=375
+ Caption="Вызов"
+ Point(onSetFocus)
+ link(onSetFocus,6680651:doWork2,[])
+}
+Add(HubEx,1947757,690,441)
+{
+ Angle=3
+ link(onEvent,11126262:doWork1,[(694,356)])
+}
+Add(RadioButton,2080233,224,350)
+{
+ Left=50
+ Top=405
+ Caption="Тело"
+ Point(onSetFocus)
+ link(onSetFocus,6680651:doWork3,[(277,363)])
+}
+Add(Memory,10652231,490,175)
+{
+ link(onData,16293271:doWork1,[(533,181)])
+}
+Add(HubEx,6680651,273,287)
+{
+ link(onEvent,1775167:doWork3,[(332,293)])
+}
+Add(HubEx,16293271,529,232)
+{
+ Angle=2
+ link(onEvent,1775167:doWork1,[(332,238)])
+}
+Add(If_else,10111255,686,63)
+{
+ link(onTrue,14558387:doEvent1,[])
+ link(Op1,6168495:Var3,[(692,30)])
+ link(Op2,14522483:Part1,[(699,23)(489,23)(489,93)(426,93)])
+}
+Add(GetDataEx,6168495,637,25)
+{
+ Angle=3
+ link(Data,3065704:Part1,[(577,30)(577,86)(552,86)])
+}
+Add(HubEx,5837319,798,42)
+{
+ link(onEvent,7274529:doData,[])
+}
+Add(Hub,14558387,728,63)
+{
+ link(onEvent1,5837319:doWork3,[(802,69)])
+ link(onEvent2,6235247:doSelect,[(754,76)(754,570)(191,570)(191,286)])
+}
+Add(Hub,328918,749,42)
+{
+ link(onEvent1,5837319:doWork2,[])
+ link(onEvent2,2080233:doSelect,[(775,55)(775,558)(206,558)(206,356)])
+}
+Add(IndexToChanel,745735,357,266)
+{
+ Point(Index)
+ link(onEvent1,3870284:doRead,[])
+ link(Index,452520:Value,[(363,156)(426,156)])
+}
+Add(ChanelToIndex,16301861,371,105)
+{
+ Point(Data)
+ link(onIndex,452520:doValue,[])
+}
+Add(HubEx,1775167,328,266)
+{
+ link(onEvent,745735:doEvent,[])
+}
+Add(Memory,452520,420,105)
+{
+}
+Add(Memo,5520660,994,210)
+{
+ Left=695
+ Top=45
+ Width=245
+ Height=310
+ Strings=#12:int a [ 5 ];|12:float d=0.5;|6:int i;|13:signed int l;|20:int load (int num) {|10:int j = 0;|10:int c [3];|1:}|
+}
+Add(ArrayEnum,11283994,1008,280)
+{
+ link(onItem,11607052:doCompare,[])
+ link(Array,5520660:Array,[])
+}
+Add(StrMask,11607052,1064,280)
+{
+ Mask="*{*"
+ link(onFalse,8699533:doCompare,[])
+ link(Str,1780080:Var2,[])
+}
+Add(StrMask,8699533,1113,280)
+{
+ Mask="*}*"
+ link(onFalse,2989126:doWork1,[])
+ link(Str,1780080:Var3,[(1119,268)])
+}
+Add(GetDataEx,1780080,1064,263)
+{
+ Angle=3
+ link(Data,11283994:Item,[(1042,268)(1042,324)(1014,324)])
+}
+Add(Button,15891276,903,273)
+{
+ Left=715
+ Top=380
+ link(onClick,1942645:doEvent1,[])
+}
+Add(Hub,1942645,952,273)
+{
+ link(onEvent1,15375165:doClear,[(1031,279)(1031,209)(415,209)(415,188)])
+ link(onEvent2,11283994:doEnum,[])
+}
+Add(MultiStrPart,4086438,1267,280)
+{
+ Char=" "
+ Count=1
+ link(onSplit,988875:doValue,[])
+ link(Str,10689879:Part1,[(1273,268)(1245,268)(1245,324)(1217,324)])
+}
+Add(MultiElement,2989126,1162,280)
+{
+ link(onEvent1,10689879:doSplit,[])
+}
+BEGIN_SDK
+  Add(EditMulti,10323805,21,21)
+  {
+   EventCount=1
+   WorkCount=1
+   Width=1175
+   Height=438
+   link(doWork1,2013334:doValue,[(66,27)(66,279)])
+  }
+  Add(Replace,3580379,140,273)
+  {
+   SubStr="signed "
+   DestStr="signed_"
+   link(onReplace,11950921:doEvent1,[])
+   link(Str,2013334:Value,[(146,261)(125,261)(125,317)(104,317)])
+  }
+  Add(Replace,11690547,224,273)
+  {
+   SubStr="unsigned "
+   DestStr="unsigned_"
+   link(onReplace,8875145:doValue,[])
+   link(Str,1015520:Value,[(230,261)(209,261)(209,317)(188,317)])
+  }
+  Add(Replace,5357583,308,273)
+  {
+   SubStr="volatile "
+   DestStr="volatile_"
+   link(onReplace,16486907:doValue,[])
+   link(Str,8875145:Value,[(314,261)(293,261)(293,317)(272,317)])
+  }
+  Add(Replace,1585677,392,273)
+  {
+   SubStr="const "
+   DestStr="const_"
+   link(onReplace,8741608:doValue,[])
+   link(Str,16486907:Value,[(398,261)(377,261)(377,317)(356,317)])
+  }
+  Add(Replace,11881349,476,273)
+  {
+   SubStr="eeprom "
+   DestStr="eeprom_"
+   link(onReplace,6337549:doValue,[])
+   link(Str,8741608:Value,[(482,261)(461,261)(461,317)(440,317)])
+  }
+  Add(Replace,14104693,560,273)
+  {
+   SubStr="static "
+   DestStr="static_"
+   link(onReplace,13666394:doValue,[])
+   link(Str,6337549:Value,[(566,261)(545,261)(545,317)(524,317)])
+  }
+  Add(Replace,15944969,644,273)
+  {
+   SubStr=" ="
+   DestStr="="
+   link(onReplace,11024063:doValue,[])
+   link(Str,13666394:Value,[(650,261)(629,261)(629,317)(608,317)])
+  }
+  Add(Replace,11914022,812,273)
+  {
+   SubStr=" ["
+   DestStr="["
+   link(onReplace,12390304:doValue,[])
+   link(Str,14605103:Value,[(818,261)(797,261)(797,317)(776,317)])
+  }
+  Add(Replace,14214446,896,273)
+  {
+   SubStr=" ]"
+   DestStr="]"
+   link(onReplace,5250346:doValue,[])
+   link(Str,12390304:Value,[(902,261)(881,261)(881,317)(860,317)])
+  }
+  Add(Replace,10216842,980,273)
+  {
+   SubStr="[ "
+   DestStr="["
+   link(onReplace,12768640:doValue,[])
+   link(Str,5250346:Value,[(986,261)(965,261)(965,317)(944,317)])
+  }
+  Add(Replace,8334936,1064,273)
+  {
+   SubStr="] "
+   DestStr="]"
+   link(Str,12768640:Value,[(1070,261)(1049,261)(1049,317)(1028,317)])
+  }
+  Add(Hub,11950921,1113,273)
+  {
+   link(onEvent1,10323805:onEvent1,[(1135,279)(1135,27)])
+  }
+  Add(Message,5662693,1141,308)
+  {
+  }
+  Add(Replace,4130330,728,273)
+  {
+   SubStr="= "
+   DestStr="="
+   link(onReplace,14605103:doValue,[])
+   link(Str,11024063:Value,[(734,261)(713,261)(713,317)(692,317)])
+  }
+  Add(Memory,2013334,98,273)
+  {
+   link(onData,3580379:doReplace,[])
+  }
+  Add(Memory,1015520,182,273)
+  {
+   link(onData,11690547:doReplace,[])
+  }
+  Add(Memory,8875145,266,273)
+  {
+   link(onData,5357583:doReplace,[])
+  }
+  Add(Memory,16486907,350,273)
+  {
+   link(onData,1585677:doReplace,[])
+  }
+  Add(Memory,8741608,434,273)
+  {
+   link(onData,11881349:doReplace,[])
+  }
+  Add(Memory,6337549,518,273)
+  {
+   link(onData,14104693:doReplace,[])
+  }
+  Add(Memory,13666394,602,273)
+  {
+   link(onData,15944969:doReplace,[])
+  }
+  Add(Memory,11024063,686,273)
+  {
+   link(onData,4130330:doReplace,[])
+  }
+  Add(Memory,14605103,770,273)
+  {
+   link(onData,11914022:doReplace,[])
+  }
+  Add(Memory,12390304,854,273)
+  {
+   link(onData,14214446:doReplace,[])
+  }
+  Add(Memory,5250346,938,273)
+  {
+   link(onData,10216842:doReplace,[])
+  }
+  Add(Memory,12768640,1022,273)
+  {
+   link(onData,8334936:doReplace,[])
+  }
+END_SDK
+Add(FormatStr,1248627,1267,581)
+{
+ DataCount=4
+ Mask="%2;%1;%4;%3"
+ link(onFString,15375165:doAdd,[(1323,587)(1323,314)(415,314)(415,181)])
+ link(Str1,4086438:Part1,[])
+ link(Str2,2322729:Value,[(1280,495)(1952,495)])
+ link(Str3,4404622:Value,[(1287,506)(1609,506)])
+ link(Str4,2459251:Value,[(1294,565)(1952,565)])
+}
+Add(MultiStrPart,1986105,1428,287)
+{
+ Char="="
+ link(onSplit,14841638:doEvent1,[])
+ link(Str,16845:Var3,[(1434,268)])
+}
+Add(StrMask,10122916,1379,280)
+{
+ Mask="*=*"
+ link(onFalse,7001312:doEvent1,[(1444,286)(1444,237)])
+ link(onTrue,1986105:doSplit,[])
+ link(Str,16845:Var2,[])
+}
+Add(GetDataEx,16845,1379,263)
+{
+ Angle=3
+ link(Data,988875:Value,[(1356,268)(1356,324)(1329,324)])
+}
+Add(DoData,13857921,1547,287)
+{
+ link(onEventData,8681072:doWork2,[])
+ link(Data,1986105:Part1,[(1553,275)(1459,275)(1459,331)(1434,331)])
+}
+Add(DoData,11734165,1547,231)
+{
+ link(onEventData,8681072:doWork1,[(1591,237)])
+ link(Data,16845:Var1,[(1553,219)(1385,219)])
+}
+Add(Memory,3502708,1603,287)
+{
+}
+Add(HubEx,8681072,1587,287)
+{
+ link(onEvent,3502708:doValue,[])
+}
+Add(DoData,7027604,1183,581)
+{
+ link(onEventData,1248627:doString,[])
+}
+Add(MultiStrPart,10689879,1211,280)
+{
+ link(onSplit,4086438:doSplit,[])
+}
+Add(DoData,2918535,1547,399)
+{
+ link(onEventData,15956563:doWork2,[])
+ link(Data,1986105:Part2,[(1553,359)(1441,359)])
+}
+Add(DoData,2543674,1547,343)
+{
+ link(onEventData,15956563:doWork1,[(1591,349)])
+}
+Add(Memory,4404622,1603,399)
+{
+ link(onData,7044821:doCompare,[])
+}
+Add(HubEx,15956563,1587,399)
+{
+ link(onEvent,4404622:doValue,[])
+}
+Add(Hub,7001312,1484,231)
+{
+ OutCount=3
+ link(onEvent1,11734165:doData,[])
+ link(onEvent2,2543674:doData,[(1522,244)(1522,349)])
+}
+Add(Hub,14841638,1477,287)
+{
+ OutCount=3
+ link(onEvent1,13857921:doData,[])
+ link(onEvent2,2918535:doData,[(1507,300)(1507,405)])
+}
+Add(Memory,988875,1323,280)
+{
+ link(onData,10122916:doCompare,[])
+}
+Add(StrMask,7044821,1666,399)
+{
+ Mask="*[*"
+ link(onFalse,10695707:doEvent1,[(1762,405)(1762,356)])
+ link(onTrue,9223942:doSplit,[])
+ link(Str,1839798:Var2,[])
+}
+Add(ChanelToIndex,10206501,1855,875)
+{
+ link(onIndex,16120089:doEvent,[])
+}
+Add(IndexToChanel,16120089,3703,875)
+{
+}
+Add(DoData,11470483,1890,406)
+{
+ link(onEventData,1622898:doWork2,[])
+ link(Data,9223942:Part1,[(1896,394)(1812,394)(1812,457)(1728,457)])
+}
+Add(DoData,12656974,1890,350)
+{
+ link(onEventData,1622898:doWork1,[(1934,356)])
+ link(Data,6065165:Var3,[(1896,331)])
+}
+Add(Memory,2322729,1946,406)
+{
+}
+Add(HubEx,1622898,1930,406)
+{
+ link(onEvent,2322729:doValue,[])
+}
+Add(DoData,12729844,1890,518)
+{
+ link(onEventData,13762071:doWork2,[])
+ link(Data,11181875:Part1,[(1896,478)(1777,478)])
+}
+Add(DoData,1199584,1890,462)
+{
+ link(onEventData,13762071:doWork1,[(1934,468)])
+}
+Add(Memory,2459251,1946,518)
+{
+ link(onData,7027604:doData,[(1990,524)(1990,556)(1171,556)(1171,587)])
+}
+Add(HubEx,13762071,1930,518)
+{
+ link(onEvent,2459251:doValue,[])
+}
+Add(Hub,10695707,1827,350)
+{
+ OutCount=3
+ link(onEvent1,12656974:doData,[])
+ link(onEvent2,1199584:doData,[(1865,363)(1865,468)])
+}
+Add(Hub,61783,1820,406)
+{
+ OutCount=3
+ link(onEvent1,11470483:doData,[])
+ link(onEvent2,12729844:doData,[(1850,419)(1850,524)])
+}
+Add(MultiStrPart,11181875,1771,406)
+{
+ Char="]"
+ Count=1
+ link(onSplit,61783:doEvent1,[])
+ link(Str,9223942:Part2,[(1777,394)(1756,394)(1756,450)(1735,450)])
+}
+Add(MultiStrPart,9223942,1722,406)
+{
+ Char="["
+ link(onSplit,11181875:doSplit,[])
+ link(Str,6065165:Var2,[])
+}
+Add(GetDataEx,1839798,1666,326)
+{
+ Angle=3
+ link(Data,3502708:Value,[(1609,331)])
+}
+Add(GetDataEx,6065165,1722,326)
+{
+ Angle=3
+ link(Data,1839798:Var3,[])
+}
