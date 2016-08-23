@@ -308,40 +308,38 @@ Add(Memo,5520660,994,210)
  Top=45
  Width=245
  Height=310
- Strings=#12:int a [ 5 ];|12:float d=0.5;|6:int i;|13:signed int l;|20:int load (int num) {|10:int j = 0;|10:int c [3];|1:}|
+ Strings=#12:int a [ 5 ];|17:float d=0.5;//777|6:int i;|13:signed int l;|20:int load (int num) {|15:int j = 0;//888|10:int c [3];|1:}|9:int g=20;|13:void prn () {|10:int num_p;|10:str p[20];|1:}|9:double r;|
 }
 Add(ArrayEnum,11283994,1008,280)
 {
- link(onItem,11607052:doCompare,[])
+ link(onItem,8699533:doCompare,[])
  link(Array,5520660:Array,[])
 }
-Add(StrMask,11607052,1064,280)
+Add(StrMask,11607052,1155,280)
 {
  Mask="*{*"
- link(onFalse,8699533:doCompare,[])
- link(Str,1780080:Var2,[])
+ link(onFalse,10689879:doSplit,[])
+ link(onTrue,14289496:doSplit,[(1199,293)(1199,132)])
 }
-Add(StrMask,8699533,1113,280)
+Add(StrMask,8699533,1057,280)
 {
  Mask="*}*"
  link(onFalse,2989126:doWork1,[])
- link(Str,1780080:Var3,[(1119,268)])
+ link(onTrue,6454617:doWork3,[(1095,293)])
+ link(Str,11283994:Item,[(1063,268)(1035,268)(1035,324)(1014,324)])
 }
-Add(GetDataEx,1780080,1064,263)
-{
- Angle=3
- link(Data,11283994:Item,[(1042,268)(1042,324)(1014,324)])
-}
-Add(Button,15891276,903,273)
+Add(Button,15891276,903,266)
 {
  Left=715
  Top=380
  link(onClick,1942645:doEvent1,[])
 }
-Add(Hub,1942645,952,273)
+Add(Hub,1942645,952,266)
 {
- link(onEvent1,15375165:doClear,[(1031,279)(1031,209)(415,209)(415,188)])
- link(onEvent2,11283994:doEnum,[])
+ OutCount=3
+ link(onEvent1,15375165:doClear,[(1031,272)(1031,209)(415,209)(415,188)])
+ link(onEvent2,6454617:doWork2,[])
+ link(onEvent3,11283994:doEnum,[])
 }
 Add(MultiStrPart,4086438,1267,280)
 {
@@ -350,9 +348,9 @@ Add(MultiStrPart,4086438,1267,280)
  link(onSplit,988875:doValue,[])
  link(Str,10689879:Part1,[(1273,268)(1245,268)(1245,324)(1217,324)])
 }
-Add(MultiElement,2989126,1162,280)
+Add(MultiElement,2989126,1106,280)
 {
- link(onEvent1,10689879:doSplit,[])
+ link(onEvent1,11607052:doCompare,[])
 }
 BEGIN_SDK
   Add(EditMulti,10323805,21,21)
@@ -504,13 +502,15 @@ BEGIN_SDK
 END_SDK
 Add(FormatStr,1248627,1267,581)
 {
- DataCount=4
- Mask="%2;%1;%4;%3"
+ DataCount=6
+ Mask="%2;%1;%4;%3;%6;%5"
  link(onFString,15375165:doAdd,[(1323,587)(1323,314)(415,314)(415,181)])
  link(Str1,4086438:Part1,[])
  link(Str2,2322729:Value,[(1280,495)(1952,495)])
  link(Str3,4404622:Value,[(1287,506)(1609,506)])
  link(Str4,2459251:Value,[(1294,565)(1952,565)])
+ link(Str5,3593743:Value,[(1301,559)(1202,559)(1202,625)(1126,625)])
+ link(Str6,8949456:Value,[(1308,369)(1322,369)])
 }
 Add(MultiStrPart,1986105,1428,287)
 {
@@ -630,7 +630,7 @@ Add(DoData,1199584,1890,462)
 }
 Add(Memory,2459251,1946,518)
 {
- link(onData,7027604:doData,[(1990,524)(1990,556)(1171,556)(1171,587)])
+ link(onData,8334271:doCompare,[(1990,524)(1990,552)(891,552)(891,580)])
 }
 Add(HubEx,13762071,1930,518)
 {
@@ -670,4 +670,78 @@ Add(GetDataEx,6065165,1722,326)
 {
  Angle=3
  link(Data,1839798:Var3,[])
+}
+Add(MultiStrData,4170678,959,581)
+{
+ Char="/"
+ Count=1
+ link(Str,12909022:Var2,[])
+ link(onPart1,14994772:doSplit,[])
+}
+Add(MultiStrData,14994772,1008,581)
+{
+ Char="/"
+ Count=1
+ link(Str,4170678:RemaindStr,[(1014,569)(990,569)(990,625)(965,625)])
+ link(onPart1,8528013:doData,[])
+}
+Add(StrMask,8334271,903,574)
+{
+ Mask="*//*"
+ link(onFalse,858288:doData,[(999,580)(999,531)])
+ link(onTrue,4170678:doSplit,[])
+ link(Str,12909022:Var1,[(909,516)])
+}
+Add(GetDataEx,12909022,959,511)
+{
+ Angle=1
+ link(Data,10689879:Part2,[(1224,516)])
+}
+Add(DoData,7017854,1036,644)
+{
+}
+Add(DoData,858288,1064,525)
+{
+ link(onEventData,9272287:doWork1,[(1108,531)])
+}
+Add(Memory,3593743,1120,581)
+{
+ link(onData,7027604:doData,[])
+}
+Add(HubEx,9272287,1104,581)
+{
+ link(onEvent,3593743:doValue,[])
+}
+Add(DoData,8528013,1064,581)
+{
+ link(onEventData,9272287:doWork2,[])
+ link(Data,14994772:RemaindStr,[(1070,569)(1042,569)(1042,625)(1014,625)])
+}
+Add(Memory,8949456,1316,126)
+{
+}
+Add(MultiStrPart,14289496,1211,126)
+{
+ Char=" "
+ link(onSplit,3198803:doStrCat,[])
+}
+Add(DoData,6831191,1260,70)
+{
+ Data=String(вся программа)
+ link(onEventData,10460246:doWork1,[(1299,76)])
+}
+Add(HubEx,10460246,1295,126)
+{
+ link(onEvent,8949456:doValue,[])
+}
+Add(StrCat,3198803,1260,126)
+{
+ Str1="в функции "
+ link(onStrCat,10460246:doWork2,[])
+ link(Str2,14289496:Part2,[(1273,114)(1249,114)(1249,170)(1224,170)])
+}
+Add(HubEx,6454617,1091,273)
+{
+ Angle=3
+ link(onEvent,6831191:doData,[(1095,76)])
 }
