@@ -302,15 +302,15 @@ Add(HubEx,1775167,328,266)
 Add(Memory,452520,420,105)
 {
 }
-Add(Memo,5520660,994,210)
+Add(Memo,5520660,938,210)
 {
  Left=695
  Top=45
  Width=245
  Height=310
- Strings=#12:int a [ 5 ];|17:float d=0.5;//777|6:int i;|13:signed int l;|20:int load (int num) {|15:int j = 0;//888|10:int c [3];|1:}|9:int g=20;|13:void prn () {|10:int num_p;|10:str p[20];|1:}|9:double r;|
+ Strings=#12:int a [ 5 ];|17:float d=0.5;//777|6:int i;|13:signed int l;|20:int load (int num) {|15:int j = 0;//888|10:int c [3];|2:};|9:int g=20;|13:void prn () {|10:int num_p;|13:string p[20];|2:};|6:prn();|14:pinmode(3, 1);|9:double r;|
 }
-Add(ArrayEnum,11283994,1008,280)
+Add(ArrayEnum,11283994,952,280)
 {
  link(onItem,8699533:doCompare,[])
  link(Array,5520660:Array,[])
@@ -321,20 +321,20 @@ Add(StrMask,11607052,1155,280)
  link(onFalse,10689879:doSplit,[])
  link(onTrue,14289496:doSplit,[(1199,293)(1199,132)])
 }
-Add(StrMask,8699533,1057,280)
+Add(StrMask,8699533,1001,280)
 {
  Mask="*}*"
  link(onFalse,2989126:doWork1,[])
- link(onTrue,6454617:doWork3,[(1095,293)])
- link(Str,11283994:Item,[(1063,268)(1035,268)(1035,324)(1014,324)])
+ link(onTrue,6454617:doWork3,[(1039,293)])
+ link(Str,11283994:Item,[(1007,268)(979,268)(979,324)(958,324)])
 }
-Add(Button,15891276,903,266)
+Add(Button,15891276,847,266)
 {
  Left=715
  Top=380
  link(onClick,1942645:doEvent1,[])
 }
-Add(Hub,1942645,952,266)
+Add(Hub,1942645,896,266)
 {
  OutCount=3
  link(onEvent1,15375165:doClear,[(1031,272)(1031,209)(415,209)(415,188)])
@@ -348,16 +348,16 @@ Add(MultiStrPart,4086438,1267,280)
  link(onSplit,988875:doValue,[])
  link(Str,10689879:Part1,[(1273,268)(1245,268)(1245,324)(1217,324)])
 }
-Add(MultiElement,2989126,1106,280)
+Add(MultiElement,2989126,1050,280)
 {
- link(onEvent1,11607052:doCompare,[])
+ link(onEvent1,7472026:Input,[])
 }
 BEGIN_SDK
   Add(EditMulti,10323805,21,21)
   {
    EventCount=1
    WorkCount=1
-   Width=1175
+   Width=1273
    Height=438
    link(doWork1,2013334:doValue,[(66,27)(66,279)])
   }
@@ -365,7 +365,7 @@ BEGIN_SDK
   {
    SubStr="signed "
    DestStr="signed_"
-   link(onReplace,11950921:doEvent1,[])
+   link(onReplace,1015520:doValue,[])
    link(Str,2013334:Value,[(146,261)(125,261)(125,317)(104,317)])
   }
   Add(Replace,11690547,224,273)
@@ -435,14 +435,8 @@ BEGIN_SDK
   {
    SubStr="] "
    DestStr="]"
+   link(onReplace,1566314:doValue,[])
    link(Str,12768640:Value,[(1070,261)(1049,261)(1049,317)(1028,317)])
-  }
-  Add(Hub,11950921,1113,273)
-  {
-   link(onEvent1,10323805:onEvent1,[(1135,279)(1135,27)])
-  }
-  Add(Message,5662693,1141,308)
-  {
   }
   Add(Replace,4130330,728,273)
   {
@@ -498,6 +492,28 @@ BEGIN_SDK
   Add(Memory,12768640,1022,273)
   {
    link(onData,8334936:doReplace,[])
+  }
+  Add(Replace,9825674,1148,273)
+  {
+   SubStr="long "
+   DestStr="long_"
+   link(onReplace,4874158:doValue,[])
+   link(Str,1566314:Value,[(1154,261)(1133,261)(1133,317)(1112,317)])
+  }
+  Add(Replace,8266966,1232,273)
+  {
+   SubStr="short "
+   DestStr="short_"
+   link(onReplace,10323805:onEvent1,[(1279,279)(1279,27)])
+   link(Str,4874158:Value,[(1238,261)(1217,261)(1217,317)(1196,317)])
+  }
+  Add(Memory,1566314,1106,273)
+  {
+   link(onData,9825674:doReplace,[])
+  }
+  Add(Memory,4874158,1190,273)
+  {
+   link(onData,8266966:doReplace,[])
   }
 END_SDK
 Add(FormatStr,1248627,1267,581)
@@ -740,8 +756,142 @@ Add(StrCat,3198803,1260,126)
  link(onStrCat,10460246:doWork2,[])
  link(Str2,14289496:Part2,[(1273,114)(1249,114)(1249,170)(1224,170)])
 }
-Add(HubEx,6454617,1091,273)
+Add(HubEx,6454617,1035,273)
 {
  Angle=3
- link(onEvent,6831191:doData,[(1095,76)])
+ link(onEvent,8135083:doEvent1,[(1039,76)])
 }
+Add(StrList,14075126,1526,42)
+{
+ Strings=#4:void|8:unsigned|6:signed|4:long|5:short|8:volatile|6:eeprom|6:static|5:const|3:bit|4:char|3:int|3:str|6:string|5:float|6:double|
+}
+Add(StrMask,10138149,1652,105)
+{
+ Mask="*=*"
+ Point(doMask)
+ link(onTrue,5958299:doWork2,[(1692,118)(1692,111)])
+ link(Str,16160859:Var2,[])
+}
+Add(ArrayEnum,14229987,1526,112)
+{
+ link(onItem,10904606:doStrCat,[])
+ link(onEndEnum,9160892:doEvent,[(1568,125)(1568,153)])
+ link(Array,14075126:Array,[(1532,100)(1546,100)])
+}
+Add(Hub,7434936,1624,112)
+{
+ link(onEvent1,10138149:doMask,[])
+ link(onEvent2,10138149:doCompare,[(1645,125)(1645,111)])
+}
+Add(StrCat,10904606,1575,112)
+{
+ Str2="*"
+ link(onStrCat,7434936:doEvent1,[])
+ link(Str1,14229987:Item,[(1581,100)(1553,100)(1553,156)(1532,156)])
+}
+Add(Memory,8379824,1477,112)
+{
+ link(onData,14229987:doEnum,[])
+}
+Add(Memory,13064815,1743,98)
+{
+}
+Add(ChanelToIndex,5958299,1701,98)
+{
+ link(onIndex,13064815:doValue,[])
+}
+Add(Hub,8334781,1449,98)
+{
+ link(onEvent1,5958299:doWork1,[])
+ link(onEvent2,8379824:doValue,[(1470,111)(1470,118)])
+}
+Add(IndexToChanel,9160892,1743,147)
+{
+ Point(Index)
+ Point(Data)
+ link(Index,13064815:Value,[])
+ link(Data,16160859:Var3,[(1756,93)])
+}
+Add(GetDataEx,16160859,1652,88)
+{
+ Angle=3
+ link(Data,8379824:Value,[(1618,93)(1618,163)(1483,163)])
+}
+Add(Hub,8135083,1127,70)
+{
+ link(onEvent1,6831191:doData,[])
+}
+Add(Message,7079999,1155,91)
+{
+}
+Add(MultiElementEx,7472026,1099,280)
+{
+ link(Output(+),11607052:doCompare,[])
+}
+BEGIN_SDK
+  Add(EditMultiEx,12628098,21,21)
+  {
+   WorkCount=#5:Input|
+   EventCount=#9:Output(+)|9:Output(-)|
+   Width=412
+   link(Input,8334781:doEvent1,[(35,27)(35,111)])
+  }
+  Add(StrList,14075126,126,49)
+  {
+   Strings=#4:void|8:unsigned|6:signed|4:long|5:short|8:volatile|6:eeprom|6:static|5:const|3:bit|4:char|3:int|3:str|6:string|5:float|6:double|
+  }
+  Add(StrMask,10138149,252,112)
+  {
+   Mask="*=*"
+   Point(doMask)
+   link(onTrue,5958299:doWork2,[(292,125)(292,118)])
+   link(Str,16160859:Var2,[])
+  }
+  Add(ArrayEnum,14229987,126,119)
+  {
+   link(onItem,10904606:doStrCat,[])
+   link(onEndEnum,9160892:doEvent,[(168,132)(168,160)])
+   link(Array,14075126:Array,[(132,107)(146,107)])
+  }
+  Add(Hub,7434936,224,119)
+  {
+   link(onEvent1,10138149:doMask,[])
+   link(onEvent2,10138149:doCompare,[(245,132)(245,118)])
+  }
+  Add(StrCat,10904606,175,119)
+  {
+   Str2="*"
+   link(onStrCat,7434936:doEvent1,[])
+   link(Str1,14229987:Item,[(181,107)(153,107)(153,163)(132,163)])
+  }
+  Add(Memory,8379824,77,119)
+  {
+   link(onData,14229987:doEnum,[])
+  }
+  Add(Memory,13064815,343,105)
+  {
+  }
+  Add(ChanelToIndex,5958299,301,105)
+  {
+   link(onIndex,13064815:doValue,[])
+  }
+  Add(Hub,8334781,49,105)
+  {
+   link(onEvent1,5958299:doWork1,[])
+   link(onEvent2,8379824:doValue,[(70,118)(70,125)])
+  }
+  Add(IndexToChanel,9160892,343,154)
+  {
+   Point(Index)
+   Point(Data)
+   link(onEvent1,12628098:Output(-),[(404,160)(404,34)])
+   link(onEvent2,12628098:Output(+),[(404,167)(404,27)])
+   link(Index,13064815:Value,[])
+   link(Data,16160859:Var3,[(356,100)])
+  }
+  Add(GetDataEx,16160859,252,95)
+  {
+   Angle=3
+   link(Data,8379824:Value,[(218,100)(218,170)(83,170)])
+  }
+END_SDK
